@@ -1,0 +1,17 @@
+---
+- name: Update Raspberry Pi cluster.
+  hosts: cluster
+  become: yes
+  become_user: root
+  
+  tasks:
+    - name: Perform a dist-upgrade.
+      ansible.builtin.apt:
+        upgrade: dist
+        update_cache: yes
+      tags:
+      - update
+...
+
+# Running a specific portion of a playbook:
+# pipenv run ansible-playbook --inventory-file inventory-cluster.ini playbook-cluster.yml -tags "update" -u root --ask-pass

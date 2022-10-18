@@ -1,0 +1,6 @@
+---
+- hosts: localmachine
+  become: yes
+  roles:
+    - {}
+...

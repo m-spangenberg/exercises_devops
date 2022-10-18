@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    privileged: true
+    
+    volumes:
+      - /path/to/storage:/config
+    
+    environment:
+      - TZ=Africa/Windhoek
+    
+    network_mode: host
+    restart: unless-stopped

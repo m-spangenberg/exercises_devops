@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: DO_NOT_USE_IN_PRODUCTION_PASSWORD
+  www:
+    depends_on:
+    - db
+    image: php:7.4.30-apache
+    volumes:
+    - "./ex_lamp/:var/www/html"
+    ports:
+    - 80:80
+    - 443:443

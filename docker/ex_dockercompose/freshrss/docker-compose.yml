@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+    freshrss:
+        restart: unless-stopped
+        logging:
+            driver:
+                local
+            options:
+                max-size: 10m
+        ports:
+            - '8686:80'
+        environment:
+            - TZ=Africa/Windhoek
+            - 'CRON_MIN=1,31'
+        volumes:
+            - '/path/to/storage:/var/www/FreshRSS/data'
+            - '/path/to/storage:/var/www/FreshRSS/extensions'
+        container_name: freshrss
+        image: freshrss/freshrss

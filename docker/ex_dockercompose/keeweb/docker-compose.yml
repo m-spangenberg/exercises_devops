@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+    keeweb:
+        container_name: keeweb
+        ports:
+            - '8443:443'
+            - '8880:80'
+        volumes:
+            - '/path/to/storage:/etc/nginx/external/'
+        image: antelle/keeweb

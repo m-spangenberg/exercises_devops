@@ -1,0 +1,9 @@
+---
+- name: Test Ping
+  hosts: cluster
+  
+  tasks:
+  - action: ping
+...
+
+# pipenv run ansible-playbook --inventory-file inventory-cluster.ini playbook-ping.yml -u root --ask-pass

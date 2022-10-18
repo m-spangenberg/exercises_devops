@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+    nginx:
+        container_name: nginx-rp
+        ports:
+            - '80:80'
+        environment:
+            - TZ=Africa/Windhoek
+        image: nginx

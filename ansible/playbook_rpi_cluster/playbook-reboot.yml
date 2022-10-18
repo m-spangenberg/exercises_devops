@@ -1,0 +1,12 @@
+---
+- name: Update Raspberry Pi cluster.
+  hosts: cluster
+  
+  tasks:
+    - name: Reboot all machines in the cluster.
+      shell: reboot
+      become: yes
+...
+
+# Running a playbook:
+# pipenv run ansible-playbook --inventory-file inventory-cluster.ini playbook-reboot.yml -u root --ask-pass
