@@ -2,6 +2,27 @@
 
 My personal notes for learning Development Operations from the perspective of someone with good general experience with all the related fields looking to understand DevOps' tools and workflows more deeply.
 
+## What is DevOps?
+
+DevOps is combination of cultural philosophies, practices, and tools used in building delivery pipelines for services and is focused on the unification and **automation** of the deployment lifecycle. Put more plainly, DevOps is responsible for building, testing, and releasing code in an accountable way that allows parties to react more rapidly, ensures higher reliability, scales more easily and is more secure.
+
+### Continuous Integration
+
+The automated process of building and testing changes to a codebase each time a team member commits to a versio
+
+### Continuous Delivery
+
+### Microservices
+
+### Infrastructure as Code
+
+#### Configuration Management
+
+#### Policy as Code
+
+### Monitoring and Logging
+
+### Communication and Collaboration
 
 ## DevOps Skillset
 
