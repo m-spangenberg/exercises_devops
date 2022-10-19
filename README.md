@@ -1,22 +1,57 @@
 # DevOps
 
-My personal notes for learning Development Operations from the perspective of someone with good general experience with all the related fields looking to understand DevOps' tools and workflows more deeply.
+My personal notes for learning Development Operations from the perspective of someone with good general experience with all the related topics looking to understand DevOps' tools and workflows more deeply.
 
 ## What is DevOps?
 
-DevOps is combination of cultural philosophies, practices, and tools used in building delivery pipelines for services and is focused on the unification and **automation** of the deployment lifecycle. Put more plainly, DevOps is responsible for building, testing, and releasing code in an accountable way that allows parties to react more rapidly, ensures higher reliability, scales more easily and is more secure.
+DevOps is combination of philosophies, practices, and tools used in building delivery pipelines for services and it is focused on the unification and **automation** of the deployment lifecycle. Put more plainly, DevOps is responsible for building, testing, and releasing code in an accountable way that allows parties to react more rapidly, ensures higher reliability, scales more easily and is more secure.
+
+DevOps Cycle: Plan > Code > Build > Test (CI) > Release > Deploy (CD) > Operate > Monitor > Plan
+
+The three pillars of DevOps are Pull Request Automation, Deployment Automation and Application Performance Management.
 
 ### Continuous Integration
 
-CI is the automated process of building and testing changes to a codebase each time feature branches get merged in a version controlled repository and exists to keep the momentum up for developers so they commit often and catch bugs early. Depending on the teams branch policies, commits can be done as features to a dev branch, or the main branch, depending on quality constraints. An individual developer works on a feature branch of the project, they then make a pull request to merge their feature branch into dev or main. This triggers a build system (Jenkins, TeamCity, Buddy, Gitlab CI, Circle CI) to build, test and validate the main branch with the new changes.
+During the development process, developers will propose code changes with version control tools like GitHub or GitLab. These changes are called pull requests or merge requests. The request itself is usually a fully formed feature that focuses on solving some sort of business requirement. Once this pull request is approved through a process of **Code Review**, the feature get merged into the main codebase. The DevOps engineer places gates in front of this process in order to automate the catching of bugs. This automated process is called **Continuous Integration** (CI). After the pull request is approved and validated by CI, more feedback is given by the Managers, Leads and Designers responsible for the project.
+
+CI is the automated process of building and testing changes to a codebase each time feature branches get merged in a version controlled repository and exists to keep the momentum up for developers so they commit often and catch bugs early. Depending on the teams branch policies, commits can be done as features to a dev branch, or the main branch, depending on quality constraints. An individual developer works on a feature branch of the project, they then make a pull request to merge their feature branch into dev or main. This triggers a build system (Jenkins, TeamCity, Buddy, Gitlab CI, Circle CI) to build, test and validate the main branch with the new changes. It's important to realize CI is not QA, Quality Assurance or manual testing, is a domain in its own right, as much as Software Engineering or DevOps.
 
 ### Continuous Delivery
 
 CD is a lean practice, where building, testing, configuration and deployment take place to make code active in a production environment. This release pipeline usually automates testing and infrastructure creation in order to deploy new builds.
 
+Is used to perform tasks like automatically deploying builds with features to a certain set of users for testing in small groups before rolling out changes publicly - this is called **Canary Deployment** or rolling out a new version of software in a staggered way while avoiding downtime on the client's side, and even rolling back to a previous version in case something really bad happened! Ideally, we don't want to rely on too much custom code to perform these automatic deployments because that means we have more code specific to one project, more code to maintain, and more tests to write for all that new code. It makes sense to use off the shelf software.
+
+### Application Performance Management
+
+So now that we've done the building, testing and deployment, it would be great to have insight into the infrastructure and services so we can make changes internally in order to reduce waste and increase performance. Performance Management in DevOps falls in the following catagories:
+
+* Metrics
+  * being able to quantify factors that directly impact service delivery
+* Logging
+  * having an auditable history of transactions in order to debug processes
+* Monitoring
+  * turning metrics and logs into data that can be processed by automation
+* Alerting
+  * notifies concerned parties when certain monitored values meet a threshold
+
 ### Microservices
 
-Microservices as an architectural approach replaces monolithic approaches by breaking up a service into multiple smaller applications focused on clean separation of business logic that can function independently, scale more easily, and is resilient to failure. For example, we have a second hand goods app where people buy and sell their unwanted items. We can break this app down into many smaller apps dedicated to specific business functions, for instance a shopping cart and a checkout feature. If the checkout feature fails, it's much easier for us to recover from that so the user doesn't abandon the cart. The alternative would be a monolithic approach where any point of failure could potentially bring the entire service down.
+Microservice approach replaces monolithic architecture by breaking up a service into multiple smaller applications focused on clean separation of business logic that can function independently, scale more easily, and is resilient to failure. For example, we have a second hand goods app where people buy and sell their unwanted items. We can break this app down into many smaller apps dedicated to specific business functions, for instance a shopping cart and a checkout feature. If the checkout feature fails, it's much easier for the service to recover. Ideally we should want all these sub-services to be **self-contained** and not be **loosely coupled** with each other to function.
+
+#### Messaging
+
+A big part of making microservice function is the underlying communication between services. To achieve this we can either make use of synchronous HTTP **API calls** between endpoints defined for each service, employ what's called a **Message Broker** (RabbitMQ, Apache Kafka) that enables asynchronous communication between services, or make use of a **Service Mesh** (Kubernetes).
+
+#### Complexity
+
+There are downsides to using microservices architecture and that revolves around the added **complexity** involved in configuring communication between distributed services and the difficulty involved in monitoring many instances of the same service distributed across servers. There are however tools (Kubernetes, Terraform) that help make our lives as DevOps engineers easier.
+
+#### Monorepo vs Polyrepo
+
+The challenge of monorepos (single repository for entire project and sub-services) is that they can be difficult to keep loosely coupled and will become **bloated** with time as individual projects become more complex. Building and deploying can also become more cumbersome when many services share the same repo because if one service change breaks the main branch, other services and their pipelines won't be able build. Some companies do however use monorepo, so it should not be completely discounted for small projects.
+
+Polyrepos on the other hand come with many of their own issues. It might be difficult or impossible to easily share or find resources across a group of repos and there is generally more overhead observed with polyrepos, but they do offer excellent separation and will result in faster build times because of smaller codebases needing to be pulled, built and tested.
 
 ### Infrastructure as Code
 
