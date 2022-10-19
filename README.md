@@ -8,11 +8,15 @@ DevOps is combination of cultural philosophies, practices, and tools used in bui
 
 ### Continuous Integration
 
-The automated process of building and testing changes to a codebase each time a team member commits to a versio
+CI is the automated process of building and testing changes to a codebase each time feature branches get merged in a version controlled repository and exists to keep the momentum up for developers so they commit often and catch bugs early. Depending on the teams branch policies, commits can be done as features to a dev branch, or the main branch, depending on quality constraints. An individual developer works on a feature branch of the project, they then make a pull request to merge their feature branch into dev or main. This triggers a build system (Jenkins, TeamCity, Buddy, Gitlab CI, Circle CI) to build, test and validate the main branch with the new changes.
 
 ### Continuous Delivery
 
+CD is a lean practice, where building, testing, configuration and deployment take place to make code active in a production environment. This release pipeline usually automates testing and infrastructure creation in order to deploy new builds.
+
 ### Microservices
+
+Microservices as an architectural approach replaces monolithic approaches by breaking up a service into multiple smaller applications focused on clean separation of business logic that can function independently, scale more easily, and is resilient to failure. For example, we have a second hand goods app where people buy and sell their unwanted items. We can break this app down into many smaller apps dedicated to specific business functions, for instance a shopping cart and a checkout feature. If the checkout feature fails, it's much easier for us to recover from that so the user doesn't abandon the cart. The alternative would be a monolithic approach where any point of failure could potentially bring the entire service down.
 
 ### Infrastructure as Code
 
@@ -26,8 +30,9 @@ The automated process of building and testing changes to a codebase each time a 
 
 ## DevOps Skillset
 
+What are the technical skills needed to enter a DevOps career?
+
 * Server Administration (On-Premise/Remote)
-  * Shell Scripting
   * Command Line
   * Package Management
   * Users & Permissions
@@ -59,6 +64,7 @@ The automated process of building and testing changes to a codebase each time a 
   * Monitoring
     * Fluent Bit, Prometheus, Nagios
 * Automation
+  * Shell Scripting
   * Configuration Management
     * Ansible
 
