@@ -10,12 +10,6 @@ DevOps Cycle: Plan > Code > Build > Test (CI) > Release > Deploy (CD) > Operate 
 
 The three pillars of DevOps are Pull Request Automation, Deployment Automation and Application Performance Management.
 
-### Continuous Integration
-
-During the development process, developers will propose code changes with version control tools like GitHub or GitLab. These changes are called pull requests or merge requests. The request itself is usually a fully formed feature that focuses on solving some sort of business requirement. Once this pull request is approved through a process of **Code Review**, the feature get merged into the main codebase. The DevOps engineer places gates in front of this process in order to automate the catching of bugs. This automated process is called **Continuous Integration** (CI). After the pull request is approved and validated by CI, more feedback is given by the Managers, Leads and Designers responsible for the project.
-
-CI is the automated process of building and testing changes to a codebase each time feature branches get merged in a version controlled repository and exists to keep the momentum up for developers so they commit often and catch bugs early. Depending on the teams branch policies, commits can be done as features to a dev branch, or the main branch, depending on quality constraints. An individual developer works on a feature branch of the project, they then make a pull request to merge their feature branch into dev or main. This triggers a build system (Jenkins, TeamCity, Buddy, Gitlab CI, Circle CI) to build, test and validate the main branch with the new changes. It's important to realize CI is not QA, Quality Assurance or manual testing, is a domain in its own right, as much as Software Engineering or DevOps.
-
 ### Continuous Delivery
 
 CD is a lean practice, where building, testing, configuration and deployment take place to make code active in a production environment. This release pipeline usually automates testing and infrastructure creation in order to deploy new builds.
@@ -42,9 +36,21 @@ So now that we've done the building, testing and deployment, it would be great t
 * System Tests (end-to-end) - Does the entire system work together
 * Acceptance Tests - Are users accepting changes that were made to the service
 
+TDD in a nutshell
+
+1. Choose a feature to work on
+2. Write tests that would pass on a working feature
+3. Build until all tests pass
+
+### Continuous Integration
+
+During the development process, developers will propose code changes with version control tools like GitHub or GitLab. These changes are called pull requests or merge requests. The request itself is usually a fully formed feature that focuses on solving some sort of business requirement. Once this pull request is approved through a process of **Code Review**, the feature get merged into the main codebase. The DevOps engineer places gates in front of this process in order to automate the catching of bugs. This automated process is called **Continuous Integration** (CI). After the pull request is approved and validated by CI, more feedback is given by the Managers, Leads and Designers responsible for the project.
+
+CI is the automated process of building and testing changes to a codebase each time feature branches get merged in a version controlled repository and exists to keep the momentum up for developers so they commit often and catch bugs early. Depending on the teams branch policies, commits can be done as features to a dev branch, or the main branch, depending on quality constraints. An individual developer works on a feature branch of the project, they then make a pull request to merge their feature branch into dev or main. This triggers a build system (Jenkins, TeamCity, Buddy, Gitlab CI, Circle CI) to build, test and validate the main branch with the new changes. It's important to realize CI is not QA, Quality Assurance or manual testing, is a domain in its own right, as much as Software Engineering or DevOps.
+
 ### Microservices
 
-Microservice approach replaces monolithic architecture by breaking up a service into multiple smaller applications focused on clean separation of business logic that can function independently, scale more easily, and is resilient to failure. For example, we have a second hand goods app where people buy and sell their unwanted items. We can break this app down into many smaller apps dedicated to specific business functions, for instance a shopping cart and a checkout feature. If the checkout feature fails, it's much easier for the service to recover. Ideally we should want all these sub-services to be **self-contained** and not be **loosely coupled** with each other to function.
+Microservice approach replaces monolithic architecture by breaking up a service into multiple smaller applications focused on clean separation of business logic that can function independently, scale more easily, and is resilient to failure. For example, we have a second hand goods app where people buy and sell their unwanted items. We can break this app down into many smaller apps dedicated to specific business functions, for instance a shopping cart and a checkout feature. If the checkout feature fails, it's much easier for the service to recover. Ideally we should want all these sub-services to be **self-contained** and not be **tightly coupled** with each other to function.
 
 #### Messaging
 
