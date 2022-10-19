@@ -35,6 +35,13 @@ So now that we've done the building, testing and deployment, it would be great t
 * Alerting
   * notifies concerned parties when certain monitored values meet a threshold
 
+### Test Driven Development
+
+* Unit Tests - Individual components of a service
+* Integration Tests - A few components together
+* System Tests (end-to-end) - Does the entire system work together
+* Acceptance Tests - Are users accepting changes that were made to the service
+
 ### Microservices
 
 Microservice approach replaces monolithic architecture by breaking up a service into multiple smaller applications focused on clean separation of business logic that can function independently, scale more easily, and is resilient to failure. For example, we have a second hand goods app where people buy and sell their unwanted items. We can break this app down into many smaller apps dedicated to specific business functions, for instance a shopping cart and a checkout feature. If the checkout feature fails, it's much easier for the service to recover. Ideally we should want all these sub-services to be **self-contained** and not be **loosely coupled** with each other to function.
