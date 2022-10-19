@@ -12,7 +12,7 @@ The three pillars of DevOps are Pull Request Automation, Deployment Automation a
 
 ### Continuous Delivery
 
-CD is a lean practice, where building, testing, configuration and deployment take place to make code active in a production environment. This release pipeline usually automates testing and infrastructure creation in order to deploy new builds.
+CD is a [lean](https://en.wikipedia.org/wiki/Lean) practice, where building, testing, configuration and deployment take place to make code active in a production environment. This release pipeline usually automates testing and infrastructure creation in order to deploy new builds.
 
 Is used to perform tasks like automatically deploying builds with features to a certain set of users for testing in small groups before rolling out changes publicly - this is called **Canary Deployment** or rolling out a new version of software in a staggered way while avoiding downtime on the client's side, and even rolling back to a previous version in case something really bad happened! Ideally, we don't want to rely on too much custom code to perform these automatic deployments because that means we have more code specific to one project, more code to maintain, and more tests to write for all that new code. It makes sense to use off the shelf software.
 
