@@ -10,15 +10,73 @@ DevOps Cycle: Plan > Code > Build > Test (CI) > Release > Deploy (CD) > Operate 
 
 The three pillars of DevOps are Pull Request Automation, Deployment Automation and Application Performance Management.
 
-### Continuous Integration
+### Automated Pull Requests
 
 During the development process, developers will propose code changes with version control tools like GitHub or GitLab. These changes are called pull requests or merge requests. The request itself is usually a fully formed feature that focuses on solving some sort of business requirement. Once this pull request is approved through a process of **Code Review**, the feature get merged into the main codebase. The DevOps engineer places gates in front of this process in order to automate the catching of bugs. This automated process is called **Continuous Integration** (CI). After the pull request is approved and validated by CI, more feedback is given by the Managers, Leads and Designers responsible for the project.
 
+### Testing & Test Driven Development
+
+* Unit Tests - Individual components of a service
+* Integration Tests - A few components together
+* System Tests (end-to-end) - Does the entire system work together
+* Acceptance Tests - Are users accepting changes that were made to the service
+
+TDD in a nutshell
+
+1. Choose a feature to work on
+2. Write tests that would pass on a working feature
+3. Build until all tests pass
+
+### Continuous Integration
+
 CI is the automated process of building and testing changes to a codebase each time feature branches get merged in a version controlled repository and exists to keep the momentum up for developers so they commit often and catch bugs early. Depending on the teams branch policies, commits can be done as features to a dev branch, or the main branch, depending on quality constraints. An individual developer works on a feature branch of the project, they then make a pull request to merge their feature branch into dev or main. This triggers a build system (Jenkins, TeamCity, Buddy, Gitlab CI, Circle CI) to build, test and validate the main branch with the new changes. It's important to realize CI is not QA, Quality Assurance or manual testing, is a domain in its own right, as much as Software Engineering or DevOps.
+
+### Code Coverage
+
+With CC we measure how comprehensive our tests are on the code base. Simply put, it's the ratio of non-syntax lines of code tested in the project. The higher our code coverage, the more stable the final product will be and less bugs we'll have to squash. **Branch Coverage** measures groups of lines of code instead of individual lines of code. Code Coverage methodology is extremely helpful in the following scenarios:
+
+* Product has users that might leave the service if they experience bugs
+* Working with new team members with little experience (interns, contractors)
+* Have a large (50K+) code base with many testable components
+
+An easy mistake to make is to try to get 100% code coverage during early stages of development, before the product has even launched to users. By trying to hit total coverage so early, testing will end up being too rigid and will slow down developers. Another thing to consider is that over-committing to unit testing before a feature has been absorbed into the product means that the developer responsible for that feature, and its many tests, will now be less likely want to remove it because of sunk-cost fallacy.
+
+The two golden rules for Code Coverage are:
+
+1. CC must never decrease - you can't add new code and have less coverage (not always easy to do)
+2. CC test files must have ownership - `*.spec.js @engineering-manager-username`
+
+### Linting & Auto Formatters
+
+The job of a **linter** is to go through source code and find programmatically obvious problems automatically. An example of linting is adherence to code style. The use of **Nits** can help keep momentum up by leaving comments on non-critical code that should be refactored at some later date when there's a more in-depth review, think of it as future references for the developer to keep in mind, but wont stop them from continuing their work. The **auto formatter** automatically applies code style rules based on a guide the team has chosen to follow.
+
+Example of auto formatting all files ending with .go extension not in the vendor path with Go.
+
+`find . -name '.go' -not -path "/vendor/*" -exec gofmt -s -w {} ;`
+
+Linting is cheap to run in CI, so it is important to not leave developers guessing whether their code is correctly styled. It also nixes strict code reviewers from blocking developers by making getting past the linter a basic necessity for submitting a pull request.
+
+Example of how simple it can be to implement a commit back bot for linting
+
+```bash
+COPY . .
+RUN if ! npm run eslint; then \
+  npm run eslint --fix && \
+  git config user.name 'lint bot' && \
+  git config user.email 'lintbot@project.com' && \
+  git add -A && \
+  git commit -m 'Automatically linted' && \
+  git checkout -b $(git branch --show-current)-linted && \
+  git push -f origin $(git branch --show-current)-linted; && \
+  echo 'lint failed!'; exit 1; \
+fi
+```
+
+Common linters for some of the most popular languages are: ESLint for JavaScript and TypeScript, PyLint and Flake8 for Python, CPPLint for C++, gofmt for GO, CheckStyle and Findbugs for Java, RuboCop and Pronto for Ruby, and a popular static-analysis framework called SonarQube for vary many others and some of the above.
 
 ### Continuous Delivery
 
-CD is a lean practice, where building, testing, configuration and deployment take place to make code active in a production environment. This release pipeline usually automates testing and infrastructure creation in order to deploy new builds.
+CD is a [lean](https://en.wikipedia.org/wiki/Lean) practice, where building, testing, configuration and deployment take place to make code active in a production environment. This release pipeline usually automates testing and infrastructure creation in order to deploy new builds.
 
 Is used to perform tasks like automatically deploying builds with features to a certain set of users for testing in small groups before rolling out changes publicly - this is called **Canary Deployment** or rolling out a new version of software in a staggered way while avoiding downtime on the client's side, and even rolling back to a previous version in case something really bad happened! Ideally, we don't want to rely on too much custom code to perform these automatic deployments because that means we have more code specific to one project, more code to maintain, and more tests to write for all that new code. It makes sense to use off the shelf software.
 
@@ -37,7 +95,7 @@ So now that we've done the building, testing and deployment, it would be great t
 
 ### Microservices
 
-Microservice approach replaces monolithic architecture by breaking up a service into multiple smaller applications focused on clean separation of business logic that can function independently, scale more easily, and is resilient to failure. For example, we have a second hand goods app where people buy and sell their unwanted items. We can break this app down into many smaller apps dedicated to specific business functions, for instance a shopping cart and a checkout feature. If the checkout feature fails, it's much easier for the service to recover. Ideally we should want all these sub-services to be **self-contained** and not be **loosely coupled** with each other to function.
+Microservice approach replaces monolithic architecture by breaking up a service into multiple smaller applications focused on clean separation of business logic that can function independently, scale more easily, and is resilient to failure. For example, we have a second hand goods app where people buy and sell their unwanted items. We can break this app down into many smaller apps dedicated to specific business functions, for instance a shopping cart and a checkout feature. If the checkout feature fails, it's much easier for the service to recover. Ideally we should want all these sub-services to be **self-contained** and not be **tightly coupled** with each other to function.
 
 #### Messaging
 
