@@ -115,7 +115,7 @@ Polyrepos on the other hand come with many of their own issues. It might be diff
 
 ### Ephemeral Environments
 
-An ephemeral environment is a temporary deployment of a self-contained version of the application. It's usually automatically provisioned and deployed by a bot on every commit for the purposes of review by all the concerned team member on the project. The most common reasons why you'd want to adopt ephemeral environemtns in your DevOps workflow is that it accelerates the software development lifecycle and allows developers to quickly share changes with other technical and non-technical team members.
+An ephemeral environment is a temporary deployment of a self-contained version of the application. It's usually automatically provisioned and deployed by a bot on every commit for the purposes of review by all the concerned team member on the project. The most common reasons why you'd want to adopt ephemeral environments in your DevOps workflow is that it accelerates the software development lifecycle and allows developers to quickly share changes with other technical and non-technical team members.
 
 #### Databases
 
@@ -126,6 +126,31 @@ The downsides of ephemeral environments is dealing with databases and microservi
 * Migrated - Same schema as production
 
 #### Lifecycle Management
+
+When do we create and destroy these ephemeral environments?
+
+A: Tie the life cycle of a pull or merge request
+B: A bot that spins up branches with small timeouts
+C: Create an environment for every commit and hibernate them when not needed
+
+### Deployment Strategies
+
+#### Rolling Deployments
+
+This strategy deploys a new version of an app without causing downtime. Here, we progressively deploy instances of the new application and shut down old versions so eventually all old versions are exchanged. To the end user this entire process appears seamless. The benefit of a rolling deployment is that it can be easily reversed in case something goes wrong, doesn't take large many of resources accomplish, and is a well supported by managed cloud providers. The downside here is that it can take a while to run if the deployment batch size is small, API compatibility however remains the biggest pain-point in this type of deployment because if the API isn't written to be backwards compatible, things will break for users during the rollout.
+
+Example algorithm for a rolling-release
+
+1. Create a new instance of the backend
+2. Wait until new instance is running and healthy
+3. Delete an instance of the old version of the backend
+4. Repeat until no more old versions exist
+
+#### Blue-Green Deployment
+
+In Blue-Green Deployment, two instances, each their own stand-alone version of an application, is maintained in production using a shared database between the two deployments. If the current active version of an app is 'blue', the new version becomes 'green', once green is ready for public use, traffic is routed from blue to green and the cycle reverses. On the upside, Blue-Green is easy to understand and quite forgiving for long-running processes, but it is quite difficult to make or revert changes on short notice. The shared resource allocation can also be inconvenient.
+
+A permutation of Blue-Green is **Rainbow Deployment** (blue, green, yellow, red, etc.) where clusters will remain alive until long running jobs are done processing. Another extension of Blue-Green is **Canary Deployment**, where a small percentage of users at random interface with new clusters and they are observed for feedback. Blue-Green works well with smaller teams deploying a few times per day, but begins to face problems in Continuous Deployment scenarios where many services are deployed many times per day.
 
 
 
@@ -962,6 +987,8 @@ https://www.youtube.com/watch?v=MY1w7sWW5ms
 
 ## Terraform
 
+https://learn.hashicorp.com/tutorials/terraform/eks?in=terraform/kubernetes
+
 ## GitOps
 
 ### Summary
@@ -993,7 +1020,4 @@ With GitOps the overarching goal is to approach DevOps with the same processes u
   * CD pipeline deploys changes to production
     * Push Deployments from the repo to the environment with a build application (Jenkins, GitLab) outside the environment
     * or Pull Deployments from the repo to the environment with an agent (Flux, Argo) that sits inside the environment
-
-.
-
-https://learn.hashicorp.com/tutorials/terraform/eks?in=terraform/kubernetes
+    * 
