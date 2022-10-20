@@ -52,7 +52,9 @@ The job of a **linter** is to go through source code and find programmatically o
 
 Example of auto formatting all files ending with .go extension not in the vendor path with Go.
 
-`find . -name '.go' -not -path "/vendor/*" -exec gofmt -s -w {} ;`
+```bash
+find . -name '.go' -not -path "/vendor/*" -exec gofmt -s -w {} ;
+```
 
 Linting is cheap to run in CI, so it is important to not leave developers guessing whether their code is correctly styled. It also nixes strict code reviewers from blocking developers by making getting past the linter a basic necessity for submitting a pull request.
 
@@ -110,6 +112,22 @@ There are downsides to using microservices architecture and that revolves around
 The challenge of monorepos (single repository for entire project and sub-services) is that they can be difficult to keep loosely coupled and will become **bloated** with time as individual projects become more complex. Building and deploying can also become more cumbersome when many services share the same repo because if one service change breaks the main branch, other services and their pipelines won't be able build. Some companies do however use monorepo, so it should not be completely discounted for small projects.
 
 Polyrepos on the other hand come with many of their own issues. It might be difficult or impossible to easily share or find resources across a group of repos and there is generally more overhead observed with polyrepos, but they do offer excellent separation and will result in faster build times because of smaller codebases needing to be pulled, built and tested.
+
+### Ephemeral Environments
+
+An ephemeral environment is a temporary deployment of a self-contained version of the application. It's usually automatically provisioned and deployed by a bot on every commit for the purposes of review by all the concerned team member on the project. The most common reasons why you'd want to adopt ephemeral environemtns in your DevOps workflow is that it accelerates the software development lifecycle and allows developers to quickly share changes with other technical and non-technical team members.
+
+#### Databases
+
+The downsides of ephemeral environments is dealing with databases and microservice communication and in early development it might be beneficial to have read-only access to a staging database or perhaps a fresh database that's set up specifically to be used in an ephemeral environment, this environment might have the following qualities.
+
+* Pre-populated Data with Personally-Identifiable Information (PII) scrubbed
+* Undoable - Easy to reset database to a known good state
+* Migrated - Same schema as production
+
+#### Lifecycle Management
+
+
 
 ### Infrastructure as Code
 

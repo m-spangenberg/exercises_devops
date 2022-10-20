@@ -1,3 +1,11 @@
 docker/*/mysqldata
 docker/*/data
 docker/*.env
+
+# temporary
+ansible/
+docker/
+gitops/
+jenkins/
+kubernetes/
+terraform/
