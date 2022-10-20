@@ -95,6 +95,10 @@ So now that we've done the building, testing and deployment, it would be great t
 * Alerting
   * notifies concerned parties when certain monitored values meet a threshold
 
+#### Log Aggregation
+
+This is the act of collecting, tagging, and making searchable all logs emitted from the frontend, backend, and database so we can trace and take action when errors occur. A popular log aggregation stack used widely today is ELK (elasticsearch, logstash, and kibana), logstash collects all log messages and extracts meaningful metadata as tags, these tagged logs are stored in elasticsearch which is optimized for storing and searching text, that then in turn exposes all this data in kibana, a web front end for visualizing and exploring data.
+
 ### Microservices
 
 Microservice approach replaces monolithic architecture by breaking up a service into multiple smaller applications focused on clean separation of business logic that can function independently, scale more easily, and is resilient to failure. For example, we have a second hand goods app where people buy and sell their unwanted items. We can break this app down into many smaller apps dedicated to specific business functions, for instance a shopping cart and a checkout feature. If the checkout feature fails, it's much easier for the service to recover. Ideally we should want all these sub-services to be **self-contained** and not be **tightly coupled** with each other to function.
@@ -152,7 +156,19 @@ In Blue-Green Deployment, two instances, each their own stand-alone version of a
 
 A permutation of Blue-Green is **Rainbow Deployment** (blue, green, yellow, red, etc.) where clusters will remain alive until long running jobs are done processing. Another extension of Blue-Green is **Canary Deployment**, where a small percentage of users at random interface with new clusters and they are observed for feedback. Blue-Green works well with smaller teams deploying a few times per day, but begins to face problems in Continuous Deployment scenarios where many services are deployed many times per day.
 
+### Serverless
 
+Serverless is primarily used for **relatively fast starting** and **stateless** services that run in hundreds of milliseconds at most. It isn't suitable for CI, but is useful for running web servers, notifications, and other short lived tasks that don'r require there to be shamefulness.
+
+### Autoscaling
+
+A step further than serverless, autoscaling with orchestration frameworks like Kubernetes, allows us to automatically scale as load increases to cope with demand on a stateful service without being overwhelmed. There are some advances in this field and there are now 'serverless containers' which blur the boundaries between stateless function runners and stateful, containerized application workloads.
+
+### Service Discovery
+
+#### Reverse Proxies
+
+Proxies are a fundamental part of DevOps and help us solve one of the bigger problems with zero-downtime deployments, the diversion of traffic. Making changes realtime to our **Global DNS** would cause a lot of headaches because of slow record propagation, so we might be have a **reverse proxy** handle traffic routing to our clusters internally and configure it as needed with scripts and management tools instead of messing with the DNS A Records. That said, the industry standard is to use local DNS based service discovery to map hostnames to IPs. It isn't trivial to deploy internal DNS to handle reverse proxy traffic, so the most likely scenario, at least when starting out, will be to make use of services like AWS that integrate their Cloud Platform with software like Kubernetes, which has its own built-in solutions.
 
 ### Infrastructure as Code
 
@@ -984,6 +1000,10 @@ rolename/tasks/main.yml
   * Global
 
 https://www.youtube.com/watch?v=MY1w7sWW5ms
+
+## Cypress
+
+## Nginx
 
 ## Terraform
 
