@@ -8,9 +8,21 @@ There are two domains involved in creating applications. Development, where engi
 
 Put more plainly, DevOps is responsible for building, testing, and releasing code in an accountable way that allows parties to react more rapidly, ensures higher reliability, scales more easily and is more secure. It's important to realize that while it's a requirement to have a broad working understanding of the many systems needed to put a service into production, it is not the role of DevOps to completely take over the work of Sys Admins, Network Engineers, or Security Engineers. Those are professions in their own right and are highly specialized. 
 
-DevOps Cycle: Plan > Code > Build > Test (CI) > Release > Deploy (CD) > Operate > Monitor > Plan
+The DevOps Cycle: Plan > Code > Build > Test > Release > Deploy > Operate > Monitor
 
-The three pillars of DevOps are Pull Request Automation, Deployment Automation and Application Performance Management.
+The work of a DevOps engineer can be broken down into the following steps.
+
+A. Continuous Integration
+
+1. Run tests on pull requests
+2. Package apps and build container images
+3. Push packages and images to artifact repositories
+
+B. Continuous Deployment 
+
+4. Deploy to server/s
+5. Monitor logs and metrics
+6. Alert product team
 
 ### Automated Pull Requests
 
@@ -172,7 +184,22 @@ A step further than serverless, autoscaling with orchestration frameworks like K
 
 Proxies are a fundamental part of DevOps and help us solve one of the bigger problems with zero-downtime deployments, the diversion of traffic. Making changes realtime to our **Global DNS** would cause a lot of headaches because of slow record propagation, so we might be have a **reverse proxy** handle traffic routing to our clusters internally and configure it as needed with scripts and management tools instead of messing with the DNS A Records. That said, the industry standard is to use local DNS based service discovery to map hostnames to IPs. It isn't trivial to deploy internal DNS to handle reverse proxy traffic, so the most likely scenario, at least when starting out, will be to make use of services like AWS that integrate their Cloud Platform with software like Kubernetes, which has its own built-in solutions.
 
+### Infrastructure as a Service
+
+Cloud providers like Amazon Web Services, Google Cloud and Microsoft Azure, have built end-to-end platforms that provide infrastructure as a service, often with many modern technologies neatly integrated and available at extremely affordable rates. These platforms manage many services like load balancing, backups, data storage, clustering, databases, and security. A big downside with all these IaaS platforms is that their workflows and often services are platform specific, meaning migrating from one platform is not trivial.
+
 ### Infrastructure as Code
+
+While developing a product, it will become necessary to have staging environments (Testing and Development) for the development process. Manually creating these environments can be time consuming and error prone. So we make use of code to create configuration files and automatically handle the repetitive tasks needed to configure infrastructure instead of manual intervening on a per deployment basis. This code is usually in the form of a **Infrastructure Provisioning** tool and a **Configuration Management** tool.
+
+### Scripting Languages
+
+Since automation is a major part of DevOps, we can be expected to write many scripts to help automate tasks. Ideally you must be comfortable with **Bash** or **Poweshell**, but what's even more beneficial is to have experience with more powerful languages like **Python** and **Go**, which will allow us to author more complex code for our automation purposes. An example of common automation tasks are:
+
+* Backups, Storage Manipulation
+* System Monitoring, Log Management
+* CRON Jobs
+* Network Management
 
 #### Configuration Management
 
