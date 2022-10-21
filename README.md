@@ -1,10 +1,10 @@
 # DevOps
 
-My personal notes for learning Development Operations from the perspective of someone with good general experience with all the related topics looking to understand DevOps' tools and workflows more deeply.
+My personal notes for learning Development Operations from the perspective of someone with good general experience with software development and computer science looking to dive deeper into DevOps tools and workflows.
 
 ## What is DevOps?
 
-DevOps is combination of philosophies, practices, and tools used in building delivery pipelines for services and it is focused on the unification and **automation** of the deployment lifecycle. Put more plainly, DevOps is responsible for building, testing, and releasing code in an accountable way that allows parties to react more rapidly, ensures higher reliability, scales more easily and is more secure.
+There are two domains involved in creating applications, development where engineers write and test software to fulfil a specific business goal, and operations, where that software is deployed and maintained on various infrastructure. DevOps is combination of those philosophies, practices, and tools. It is the practice of building delivery pipelines for services and is focused on the unification and **automation** of the deployment lifecycle. Put more plainly, DevOps is responsible for building, testing, and releasing code in an accountable way that allows parties to react more rapidly, ensures higher reliability, scales more easily and is more secure. It's important to realize that while it's a requirement to have a broad working understanding of the many systems needed to put a product into production, the job of the DevOps engineer is not to replace Sys Admins, Network Engineers, or Security Engineers. Those are professions in their own right and are highly specialized.
 
 DevOps Cycle: Plan > Code > Build > Test (CI) > Release > Deploy (CD) > Operate > Monitor > Plan
 
@@ -185,12 +185,17 @@ Proxies are a fundamental part of DevOps and help us solve one of the bigger pro
 What are the technical skills needed to enter a DevOps career?
 
 * Server Administration (On-Premise/Remote)
-  * Command Line
+  * Command Line Interface
   * Package Management
   * Users & Permissions
   * File Systems
   * Operating Systems
   * Networking
+    * Firewalls
+    * Proxy Servers
+    * Load Balancers
+    * HTTP/HTTPS
+    * IP/DNS
   * Virtualization
   * SSH
 * Development
