@@ -141,10 +141,7 @@ mkdir .config/alacritty
 cp /usr/share/doc/alacritty/example/alacritty.yml .config/alacritty/
 ls -la .config/alacritty/alacritty.yml 
 vim .config/alacritty/alacritty.yml 
-vim .config/alacritty/alacritty.yml 
-vim .config/alacritty/alacritty.yml 
 df -hT
-vim .config/alacritty/alacritty.yml 
 df -hT
 lsblk
 sudo pacman -S 

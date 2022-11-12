@@ -1,0 +1,56 @@
+---
+- hosts: localmachine
+  become: yes
+  vars:
+    created_username: marthinus
+  roles:
+    - {}
+
+  tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+
+    - name: Add user to sudo
+      user:
+        name: "{{ created_username }}"
+        state: present
+        groups: sudo
+        append: true
+        create_home: true
+
+    - name: Set SSH key
+      ansible.posix.authorized_key:
+        user: "{{ created_username }}"
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+
+    - name: Disable root pass
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        state: present
+        regexp: '^#?PermitRootLogin'
+        line: 'PermitRootLogin prohibit-password'
+    
+    - name: Update apt and install packages
+      apt:
+        pkg:
+          - curl
+          - vim
+          - git
+          - ufw
+        state: latest
+        update_cache: true
+      
+    - name: UFW - Allow SSH connections
+      community.general.ufw:
+        rule: allow
+        name: OpenSSH
+
+    - name: UFW - Enable and deny by default
+      community.general.ufw:
+        state: enabled
+        default: deny
+...

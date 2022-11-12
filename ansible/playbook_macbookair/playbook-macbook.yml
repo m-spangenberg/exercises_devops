@@ -1,6 +1,14 @@
 ---
 - hosts: localmachine
   become: yes
+  vars:
+    created_username: marthinus
   roles:
     - {}
+  tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
 ...
