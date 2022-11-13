@@ -1,0 +1,16 @@
+# single raspberry pi 3B with a pre-configured DHCP lease
+
+all:
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_become: yes
+    ansible_become_method: sudo 
+
+  hosts:
+    node-2.local: #YOUR IP ADDRESS HERE
+      user: "{{ host_username }}"
+      root: "{{ root_username }}"
+      user_passwd: "{{ host_user_passwd }}"
+      root_passwd: "{{ host_root_passwd }}"
+      ssh_pub_key: "{{ lookup('file', '~/.ssh/host_ed25519.pub') }}"
+      ansible_become_pass: "{{ host_user_passwd }}"
