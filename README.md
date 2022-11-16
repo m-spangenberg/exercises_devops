@@ -85,6 +85,9 @@
     - [Concepts](#concepts-2)
   - [Cypress](#cypress)
   - [Nginx](#nginx)
+    - [Use Cases](#use-cases-1)
+    - [Basic Commands](#basic-commands)
+    - [Nginx Configuration](#nginx-configuration)
   - [Terraform](#terraform)
   - [GitOps](#gitops)
     - [Summary](#summary)
@@ -1133,6 +1136,199 @@ https://www.youtube.com/watch?v=MY1w7sWW5ms
 ## Cypress
 
 ## Nginx
+
+### Use Cases
+
+[NGINX](https://docs.nginx.com/) is widely deployed and used in [many different configurations](https://www.nginx.com/resources/glossary/glossary/) in industry. It is popular with high traffic sites and services because it is able to handle many thousands of concurrent connections. Some of its main use cases are for serving content, and managing how content reaches end-users. It can also be configured to act as a web app firewall, prevent internal DDOS, act as an API gateway, perform [ingress control for K8S](https://kubernetes.github.io/ingress-nginx/deploy/baremetal/), and act as a [sidecar proxy loader](https://www.nginx.com/resources/glossary/sidecar/). Because it has so many use cases, I'll focus on some of the most popular ones.
+
+* Web Server
+* Load Balancing
+* Caching
+* Reverse Proxy
+
+### Basic Commands
+
+* `nginx -t` -- validate configuration syntax before reloading
+* `nginx -T` -- show the current configuration in use
+* `nginx -s reload` -- pushes the configuration to the active instance
+
+### Nginx Configuration
+
+By default, the location of the main configuration file is at `/etc/nginx/nginx.conf` and it includes all personalized files from the `/etc/nginx/conf.d/` directory. Configuration files in NGINX are structured as key value pairs that are either one-line directives or blocks of directives called contexts which are simply many one-line directives enclosed by braces. Each NGINX configuration has one Main context and one HTTP context. You can think of a directive as a statement that controls certain NGINX behavior.
+
+NGINX has many pre-made configurations and examples available as resources on their [wiki](https://www.nginx.com/resources/wiki/start/).
+
+
+Diagram of the some of the top-level contexts available in a "fully configured" .conf
+
+```bash
+Main # <-- highest level directives (workers, pid file, logs)
+├── Events # <-- connection processing directives (number of connections per worker)
+├── HTTP # <-- http/s connection handling (address pools for backend servers)
+│   ├── Server # <-- defines *'virtual' server responding to reqs. for domain names, ip's and sockets
+│   │   └── Location # <-- processing based on URI (paths, string matching)
+│   └── Upstream # <-- defines backend servers to use for load balancing
+└── Stream # <-- layer3/4 traffic handling (tcp/udp) for streaming content
+    ├── Server
+    └── Upstream
+```
+
+Basic NGINX and PHP setup on a Raspberry PI
+
+```bash
+user                  nginx;
+worker_processes      5;
+error_log             logs/error.log warn;
+pid                   logs/nginx.pid;
+
+events {
+  worker_connections  256;
+}
+
+http {
+  include    snippets/fastcgi-php.conf;
+  index      index.html index.htm index.php;
+
+  access_log   logs/access.log  main;
+  server_names_hash_bucket_size 128;
+
+  server {
+    listen       80;
+    server_name  somedomain.local www.somedomain.local;
+    access_log   logs/somedomain.access.log  main;
+    root         html;
+
+    location ~ \.php$ { # <-- passes .php files to
+      fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    }
+
+  }
+
+}
+```
+
+Simple [reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) with load balancer
+
+```bash
+http {
+
+  # the upstream is the load balancer portion of this config
+  upstream myproject {
+    server 127.0.0.1:8000 weight=3;
+    server 127.0.0.1:8001;
+    server 127.0.0.1:8002;
+  }
+
+  server {
+    listen 80;
+    server_name www.domain.com;
+    
+    # the proxy_pass directive must be inside a location context
+    location /some/path/ {
+      proxy_pass http://0.0.0.1:12345;
+    }
+  }
+}
+```
+
+Load Balancer with Cache
+
+```bash
+http {
+    proxy_cache_path  /data/nginx/cache  levels=1:2    keys_zone=STATIC:10m
+    inactive=24h  max_size=1g;
+    server {
+        location / {
+            proxy_pass             http://1.2.3.4;
+            proxy_set_header       Host $host;
+            proxy_buffering        on;
+            proxy_cache            STATIC;
+            proxy_cache_valid      200  1d;
+            proxy_cache_use_stale  error timeout invalid_header updating
+                                   http_500 http_502 http_503 http_504;
+        }
+    }
+}
+```
+
+
+```bash
+```
+
+/etc/nginx/nginx.conf
+
+```bash
+user       nginx;  # <-- user for this configuration
+worker_processes  5;  # <-- how many processes will be running in the bg
+error_log  logs/error.log warn; # <-- where error logs get dumped and what severity is logged
+pid        logs/nginx.pid; # <-- the process identification file of the error logging process
+worker_rlimit_nofile 8192;
+
+events {
+  worker_connections  4096;  # <-- Default: 1024, these are the connections allowed per worker
+}
+
+http {
+  include    conf/mime.types;
+  include    /etc/nginx/proxy.conf;
+  include    /etc/nginx/fastcgi.conf;
+  index    index.html index.htm index.php;
+
+  default_type application/octet-stream;
+  log_format   main '$remote_addr - $remote_user [$time_local]  $status '
+    '"$request" $body_bytes_sent "$http_referer" '
+    '"$http_user_agent" "$http_x_forwarded_for"';
+  access_log   logs/access.log  main; # <-- this is where every request to the server is logged
+  sendfile     on;
+  tcp_nopush   on;
+  server_names_hash_bucket_size 128; # <-- this seems to be required for some vhosts
+
+  server { # <-- server block -- php/fastcgi
+    listen       80;
+    server_name  domain1.com www.domain1.com; # <-- serve to these domains
+    access_log   logs/domain1.access.log  main;
+    root         html;
+
+    location ~ \.php$ { # <-- location context tells the client where files are located
+      fastcgi_pass   127.0.0.1:1025;
+    }
+  }
+
+  server { # simple reverse-proxy
+    listen       80;
+    server_name  domain2.com www.domain2.com;
+    access_log   logs/domain2.access.log  main;
+
+    # serve static files
+    location ~ ^/(images|javascript|js|css|flash|media|static)/  {
+      root    /var/www/virtual/big.server.com/htdocs;
+      expires 30d;
+    }
+
+    # pass requests for dynamic content to rails/turbogears/zope, et al
+    location / {
+      proxy_pass      http://127.0.0.1:8080; # <-- reroutes to a completely different server
+    }
+  }
+
+  upstream big_server_com {
+    server 127.0.0.3:8000 weight=5;
+    server 127.0.0.3:8001 weight=5;
+    server 192.168.0.1:8000;
+    server 192.168.0.1:8001;
+  }
+
+  server { # simple load balancing
+    listen          80;
+    server_name     big.server.com;
+    access_log      logs/big.server.access.log main;
+
+    location / {
+      proxy_pass      http://big_server_com;
+    }
+  }
+}
+```
 
 ## Terraform
 
