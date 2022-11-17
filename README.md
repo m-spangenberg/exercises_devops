@@ -1154,7 +1154,7 @@ https://www.youtube.com/watch?v=MY1w7sWW5ms
 
 ### Nginx Configuration
 
-By default, the location of the main configuration file is at `/etc/nginx/nginx.conf` and it includes all personalized files from the `/etc/nginx/conf.d/` directory. Configuration files in NGINX are structured as key value pairs that are either one-line directives or blocks of directives called contexts which are simply many one-line directives enclosed by braces. Each NGINX configuration has one Main context and one HTTP context. You can think of a directive as a statement that controls certain NGINX behavior.
+By default, the location of the main configuration file is at `/etc/nginx/nginx.conf` and it includes all personalized files from the `/etc/nginx/conf.d/` directory. Configuration files in NGINX are structured as key value pairs that are either one-line directives or blocks of directives called contexts which are simply many one-line directives enclosed by braces. Each NGINX configuration has one Main context and one HTTP context. You can think of a directive as a statement that controls certain NGINX behavior. NGINX has a great [beginners guide](http://nginx.org/en/docs/beginners_guide.html) introducing these concepts.
 
 NGINX has many pre-made configurations and examples available as resources on their [wiki](https://www.nginx.com/resources/wiki/start/).
 
@@ -1171,40 +1171,6 @@ Main # <-- highest level directives (workers, pid file, logs)
 └── Stream # <-- layer3/4 traffic handling (tcp/udp) for streaming content
     ├── Server
     └── Upstream
-```
-
-Basic NGINX and PHP setup on a Raspberry PI
-
-```bash
-user                  nginx;
-worker_processes      5;
-error_log             logs/error.log warn;
-pid                   logs/nginx.pid;
-
-events {
-  worker_connections  256;
-}
-
-http {
-  include    snippets/fastcgi-php.conf;
-  index      index.html index.htm index.php;
-
-  access_log   logs/access.log  main;
-  server_names_hash_bucket_size 128;
-
-  server {
-    listen       80;
-    server_name  somedomain.local www.somedomain.local;
-    access_log   logs/somedomain.access.log  main;
-    root         html;
-
-    location ~ \.php$ { # <-- passes .php files to
-      fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-    }
-
-  }
-
-}
 ```
 
 Simple [reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) with load balancer
