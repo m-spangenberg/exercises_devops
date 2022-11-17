@@ -731,6 +731,8 @@ We can apply the configuration file with `kubectl apply -f namespace-ingress.yam
 
 ### Services
 
+Back to the grindstone! :)
+
 https://www.youtube.com/watch?v=T4Z7visMM4E
 
 ### Helm
