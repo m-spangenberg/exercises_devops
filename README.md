@@ -352,6 +352,20 @@ What are the technical skills needed to enter a DevOps career?
   * Configuration Management
     * Ansible
 
+## YAML
+
+YAML syntax is used by Docker, Kubernetes, Ansible, and many others. Like JSON and XML, it is a serialized language that uses a standardized format for exchanging information. Data structures in YAML are defined with line separation and indentation. YAML syntax can represent the following data structures:
+
+* key-value pairs
+* objects
+* lists
+* booleans
+* multi-line strings
+* environment variables
+* comments
+
+
+
 ## Docker
 
 Below are my notes on learning Docker and progressing towards Kubernetes.
@@ -571,7 +585,7 @@ Minikube is a condensed Kubernetes cluster meant to run on a single machine for 
   * shows log output associated with the pod
 * `kubectl describe pod NAME`
   * reports on state changes inside the pod
-* `kubectl exec -it NAME -- bin/bash`
+* `kubectl exec -it NAME /bin/bash`
   * 'enter' container NAME by opening the interactive terminal
 * `kubectl delete deployment NAME`
   * delete the deployment configuration
@@ -583,10 +597,6 @@ Minikube is a condensed Kubernetes cluster meant to run on a single machine for 
   * show all namespaces associated with the cluster
 * `kubectl get all -n NAMESPACE`
   * shows all components associated with a given namespace
-
-### YAML Refresher
-
-https://www.youtube.com/watch?v=1uFVr15xDGg
 
 ### Deployment Configuration
 
