@@ -364,7 +364,33 @@ YAML syntax is used by Docker, Kubernetes, Ansible, and many others. Like JSON a
 * environment variables
 * comments
 
+```yml
+---
+# a pound-sign is a comment
+object:
+  - complexstring: word-with-dash
+    anumber: 42
 
+# yaml is very whitespace dependant, use a validator/linter
+object:
+stuffinsidetheobject: somestuff
+# lists start with a dash
+- one: thing
+  two: [things, thoong, theeng]
+  three: thangs
+  - nestedlist:
+    # on/off, yes/no, true/false
+    four: false
+
+# --- separator for configurations with multiple components
+
+somecommand:
+  - avariable: $SOME_ENV_VARIABLE
+  - placeholders: {{ .Values.generate.here }}
+
+# end with three periods
+...
+```
 
 ## Docker
 

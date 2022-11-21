@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+    homer:
+        container_name: homer
+        restart: unless-stopped
+        ports:
+            - '8880:8880'
+        volumes:
+            - homer:/www/assets
+        image: b4bz/homer:latest
+        
+volumes:
+  homer:
