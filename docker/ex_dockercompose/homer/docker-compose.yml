@@ -5,10 +5,9 @@ services:
         container_name: homer
         restart: unless-stopped
         ports:
-            - '8880:8880'
+            - '8080:8080'
         volumes:
-            - homer:/www/assets
+            - /home/marthinus/docker/homer/config/:/www/assets
+        # check your user id with $ id -u USERNAME
+        user: 1001:1000
         image: b4bz/homer:latest
-        
-volumes:
-  homer:
