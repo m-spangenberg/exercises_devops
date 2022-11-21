@@ -134,6 +134,11 @@ services:
         subtitle: "Distributed Transcode"
         tag: "app"
         url: "#"
+      - name: "BookStack"
+        logo: "assets/tools/bookstack.png"
+        subtitle: "Local Knowledgebase"
+        tag: "app"
+        url: "#"
 
   - name: "Node-3"
     icon: "fas fa-server"
