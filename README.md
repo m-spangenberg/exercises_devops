@@ -352,6 +352,46 @@ What are the technical skills needed to enter a DevOps career?
   * Configuration Management
     * Ansible
 
+## YAML
+
+YAML syntax is used by Docker, Kubernetes, Ansible, and many others. Like JSON and XML, it is a serialized language that uses a standardized format for exchanging information. Data structures in YAML are defined with line separation and indentation. YAML syntax can represent the following data structures:
+
+* key-value pairs
+* objects
+* lists
+* booleans
+* multi-line strings
+* environment variables
+* comments
+
+```yml
+---
+# a pound-sign is a comment
+object:
+  - complexstring: word-with-dash
+    anumber: 42
+
+# yaml is very whitespace dependant, use a validator/linter
+object:
+stuffinsidetheobject: somestuff
+# lists start with a dash
+- one: thing
+  two: [things, thoong, theeng]
+  three: thangs
+  - nestedlist:
+    # on/off, yes/no, true/false
+    four: false
+
+# --- separator for configurations with multiple components
+
+somecommand:
+  - avariable: $SOME_ENV_VARIABLE
+  - placeholders: {{ .Values.generate.here }}
+
+# end with three periods
+...
+```
+
 ## Docker
 
 Below are my notes on learning Docker and progressing towards Kubernetes.
@@ -571,7 +611,7 @@ Minikube is a condensed Kubernetes cluster meant to run on a single machine for 
   * shows log output associated with the pod
 * `kubectl describe pod NAME`
   * reports on state changes inside the pod
-* `kubectl exec -it NAME -- bin/bash`
+* `kubectl exec -it NAME /bin/bash`
   * 'enter' container NAME by opening the interactive terminal
 * `kubectl delete deployment NAME`
   * delete the deployment configuration
@@ -583,10 +623,6 @@ Minikube is a condensed Kubernetes cluster meant to run on a single machine for 
   * show all namespaces associated with the cluster
 * `kubectl get all -n NAMESPACE`
   * shows all components associated with a given namespace
-
-### YAML Refresher
-
-https://www.youtube.com/watch?v=1uFVr15xDGg
 
 ### Deployment Configuration
 
@@ -730,6 +766,8 @@ spec:
 We can apply the configuration file with `kubectl apply -f namespace-ingress.yaml` and check the state of ingress by issuing `kubectl get ingress -n namespace-ingress`. It is possible to specify multiple paths for the same host, for example we have a master domain with many separate applications that live under that domain. For instance: awesome-app.com, we can introduce `-path: /reports`, to point to a report service, our resulting route when then be: `awesome-app.com/reports`.
 
 ### Services
+
+Back to the grindstone! :)
 
 https://www.youtube.com/watch?v=T4Z7visMM4E
 
@@ -1171,129 +1209,6 @@ Main # <-- highest level directives (workers, pid file, logs)
 └── Stream # <-- layer3/4 traffic handling (tcp/udp) for streaming content
     ├── Server
     └── Upstream
-```
-
-Simple [reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) with load balancer
-
-```bash
-http {
-
-  # the upstream is the load balancer portion of this config
-  upstream myproject {
-    server 127.0.0.1:8000 weight=3;
-    server 127.0.0.1:8001;
-    server 127.0.0.1:8002;
-  }
-
-  server {
-    listen 80;
-    server_name www.domain.com;
-    
-    # the proxy_pass directive must be inside a location context
-    location /some/path/ {
-      proxy_pass http://0.0.0.1:12345;
-    }
-  }
-}
-```
-
-Load Balancer with Cache
-
-```bash
-http {
-    proxy_cache_path  /data/nginx/cache  levels=1:2    keys_zone=STATIC:10m
-    inactive=24h  max_size=1g;
-    server {
-        location / {
-            proxy_pass             http://1.2.3.4;
-            proxy_set_header       Host $host;
-            proxy_buffering        on;
-            proxy_cache            STATIC;
-            proxy_cache_valid      200  1d;
-            proxy_cache_use_stale  error timeout invalid_header updating
-                                   http_500 http_502 http_503 http_504;
-        }
-    }
-}
-```
-
-
-```bash
-```
-
-/etc/nginx/nginx.conf
-
-```bash
-user       nginx;  # <-- user for this configuration
-worker_processes  5;  # <-- how many processes will be running in the bg
-error_log  logs/error.log warn; # <-- where error logs get dumped and what severity is logged
-pid        logs/nginx.pid; # <-- the process identification file of the error logging process
-worker_rlimit_nofile 8192;
-
-events {
-  worker_connections  4096;  # <-- Default: 1024, these are the connections allowed per worker
-}
-
-http {
-  include    conf/mime.types;
-  include    /etc/nginx/proxy.conf;
-  include    /etc/nginx/fastcgi.conf;
-  index    index.html index.htm index.php;
-
-  default_type application/octet-stream;
-  log_format   main '$remote_addr - $remote_user [$time_local]  $status '
-    '"$request" $body_bytes_sent "$http_referer" '
-    '"$http_user_agent" "$http_x_forwarded_for"';
-  access_log   logs/access.log  main; # <-- this is where every request to the server is logged
-  sendfile     on;
-  tcp_nopush   on;
-  server_names_hash_bucket_size 128; # <-- this seems to be required for some vhosts
-
-  server { # <-- server block -- php/fastcgi
-    listen       80;
-    server_name  domain1.com www.domain1.com; # <-- serve to these domains
-    access_log   logs/domain1.access.log  main;
-    root         html;
-
-    location ~ \.php$ { # <-- location context tells the client where files are located
-      fastcgi_pass   127.0.0.1:1025;
-    }
-  }
-
-  server { # simple reverse-proxy
-    listen       80;
-    server_name  domain2.com www.domain2.com;
-    access_log   logs/domain2.access.log  main;
-
-    # serve static files
-    location ~ ^/(images|javascript|js|css|flash|media|static)/  {
-      root    /var/www/virtual/big.server.com/htdocs;
-      expires 30d;
-    }
-
-    # pass requests for dynamic content to rails/turbogears/zope, et al
-    location / {
-      proxy_pass      http://127.0.0.1:8080; # <-- reroutes to a completely different server
-    }
-  }
-
-  upstream big_server_com {
-    server 127.0.0.3:8000 weight=5;
-    server 127.0.0.3:8001 weight=5;
-    server 192.168.0.1:8000;
-    server 192.168.0.1:8001;
-  }
-
-  server { # simple load balancing
-    listen          80;
-    server_name     big.server.com;
-    access_log      logs/big.server.access.log main;
-
-    location / {
-      proxy_pass      http://big_server_com;
-    }
-  }
-}
 ```
 
 ## Terraform

@@ -6,6 +6,9 @@ services:
         ports:
             - '3001:3001'
         volumes:
-            - '/path/to/storage:/app/data'
+            - uptime-kuma:/app/data
         container_name: uptime-kuma
         image: 'louislam/uptime-kuma:1'
+
+volumes:
+  uptime-kuma:

@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+    homer:
+        container_name: homer
+        restart: unless-stopped
+        ports:
+            - '8080:8080'
+        volumes:
+            - /home/marthinus/docker/homer/config/:/www/assets
+        # check your user id with $ id -u USERNAME
+        user: 1001:1000
+        image: b4bz/homer:latest
