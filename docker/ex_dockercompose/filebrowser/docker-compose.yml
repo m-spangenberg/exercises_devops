@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+    filebrowser:
+        container_name: filebrowser
+        restart: unless-stopped
+        security_opt:
+          - no-new-privileges:true
+        user: 1001:1001
+        ports:
+            - '8282:80'
+        volumes:
+            - /home/marthinus/docker/filebrowser/data/:/srv
+            # create this file before running compose
+            - /home/marthinus/docker/filebrowser/conf/database.db:/database.db
+        image: filebrowser/filebrowser

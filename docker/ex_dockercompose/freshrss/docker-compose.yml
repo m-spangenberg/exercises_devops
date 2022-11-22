@@ -14,11 +14,9 @@ services:
             - TZ=Africa/Windhoek
             - 'CRON_MIN=1,31'
         volumes:
-            - fresh-data:/var/www/FreshRSS/data
-            - fresh-extensions:/var/www/FreshRSS/extensions
+            - fresh-data:/config
         container_name: freshrss
-        image: freshrss/freshrss
+        image: lscr.io/linuxserver/freshrss:latest
 
 volumes:
   fresh-data:
-  fresh-extensions:

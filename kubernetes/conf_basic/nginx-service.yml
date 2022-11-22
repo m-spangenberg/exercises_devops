@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+# the metadata block describes the service
+metadata:
+# names must be unique within a namespace
+  name: nginx-service
+spec:
+  # selectors route service traffic
+  selector:
+    # select the container in the deployment
+    app: nginx
+  # all exposed ports by this service
+  ports:
+    # the port the service handler listens on for external requests
+  - port: 80
+    # the port the pod is listening on, matches container port
+    targetPort: 8080

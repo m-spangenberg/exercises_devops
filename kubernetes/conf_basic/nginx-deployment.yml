@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  # number of pods to spin up for this deployment
+  replicas: 2
+  # selects relevant pods in deployment
+  selector:
+    matchLabels:
+      app: nginx
+  # the description of the pods to be created
+  template:
+    # metadata associated with this pod
+    metadata:
+      labels:
+        app: nginx
+    # desciption of an individual pod
+    spec:
+      # list of containers that belong to this pod
+      containers:
+      # namespace unique label (DNS)
+      - name: nginx
+        # image name to use for this container
+        image: <Image>
+        # compute resources for this container
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        # ports exposed by this container
+        ports:
+        - containerPort: 8080
