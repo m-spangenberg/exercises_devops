@@ -1,99 +1,3 @@
-- [DevOps](#devops)
-  - [What is DevOps?](#what-is-devops)
-    - [Automated Pull Requests](#automated-pull-requests)
-    - [Testing & Test Driven Development](#testing--test-driven-development)
-    - [Continuous Integration](#continuous-integration)
-    - [Code Coverage](#code-coverage)
-    - [Linting & Auto Formatters](#linting--auto-formatters)
-    - [Continuous Delivery](#continuous-delivery)
-    - [Application Performance Management](#application-performance-management)
-      - [Log Aggregation](#log-aggregation)
-    - [Microservices](#microservices)
-      - [Messaging](#messaging)
-      - [Complexity](#complexity)
-      - [Monorepo vs Polyrepo](#monorepo-vs-polyrepo)
-    - [Ephemeral Environments](#ephemeral-environments)
-      - [Databases](#databases)
-      - [Lifecycle Management](#lifecycle-management)
-    - [Deployment Strategies](#deployment-strategies)
-      - [Rolling Deployments](#rolling-deployments)
-      - [Blue-Green Deployment](#blue-green-deployment)
-    - [Serverless](#serverless)
-    - [Autoscaling](#autoscaling)
-    - [Service Discovery](#service-discovery)
-      - [Reverse Proxies](#reverse-proxies)
-    - [Infrastructure as a Service](#infrastructure-as-a-service)
-    - [Infrastructure as Code](#infrastructure-as-code)
-    - [Scripting Languages](#scripting-languages)
-      - [Configuration Management](#configuration-management)
-      - [Policy as Code](#policy-as-code)
-    - [Monitoring and Logging](#monitoring-and-logging)
-    - [Communication and Collaboration](#communication-and-collaboration)
-  - [DevOps Skillset](#devops-skillset)
-  - [Docker](#docker)
-    - [Concepts](#concepts)
-    - [What is a Container?](#what-is-a-container)
-    - [What are Container Images?](#what-are-container-images)
-    - [What is a Repository?](#what-is-a-repository)
-    - [Why choose containerization?](#why-choose-containerization)
-    - [Commands](#commands)
-    - [Beyond The Basics](#beyond-the-basics)
-    - [Best Practices](#best-practices)
-      - [User Management at Build Time](#user-management-at-build-time)
-    - [Docker Networks](#docker-networks)
-      - [Network Types](#network-types)
-    - [Environment Variables](#environment-variables)
-    - [Docker Compose](#docker-compose)
-    - [Dockerfile](#dockerfile)
-    - [Private Repos](#private-repos)
-  - [Kubernetes](#kubernetes)
-    - [Why use Kubernetes?](#why-use-kubernetes)
-    - [Concepts](#concepts-1)
-    - [Components](#components)
-    - [Architecture](#architecture)
-    - [Minikube & Kubectl](#minikube--kubectl)
-    - [K3s vs K8s?](#k3s-vs-k8s)
-    - [Kubectl Commands](#kubectl-commands)
-    - [YAML Refresher](#yaml-refresher)
-    - [Deployment Configuration](#deployment-configuration)
-    - [Namespaces](#namespaces)
-    - [Ingress & Ingress Controller](#ingress--ingress-controller)
-    - [Ingress Rules](#ingress-rules)
-    - [Services](#services)
-    - [Helm](#helm)
-    - [App Deployment Demo](#app-deployment-demo)
-    - [Pods & Containers](#pods--containers)
-    - [Volumes](#volumes)
-    - [ConfigMap](#configmap)
-    - [StatefulSet](#statefulset)
-    - [Private Docker Registry Pulls](#private-docker-registry-pulls)
-  - [Ansible](#ansible)
-    - [Use Cases](#use-cases)
-  - [Architecture Overview](#architecture-overview)
-  - [Installing Ansible (Fedora)](#installing-ansible-fedora)
-  - [Playbook Structure](#playbook-structure)
-    - [A Playbook Terminology Primer](#a-playbook-terminology-primer)
-    - [Playbook Examples](#playbook-examples)
-  - [Inventory Structure](#inventory-structure)
-    - [Inventory Examples](#inventory-examples)
-  - [Modules](#modules)
-  - [Roles](#roles)
-    - [Roles Directory Structure](#roles-directory-structure)
-    - [Role Examples](#role-examples)
-  - [Jenkins](#jenkins)
-    - [Local Setup with Docker](#local-setup-with-docker)
-    - [Concepts](#concepts-2)
-  - [Cypress](#cypress)
-  - [Nginx](#nginx)
-    - [Use Cases](#use-cases-1)
-    - [Basic Commands](#basic-commands)
-    - [Nginx Configuration](#nginx-configuration)
-  - [Terraform](#terraform)
-  - [GitOps](#gitops)
-    - [Summary](#summary)
-    - [Overview](#overview)
-    - [Why GitOps?](#why-gitops)
-
 # DevOps
 
 My personal notes for learning Development Operations from the perspective of someone with good general experience with software development and computer science looking to dive deeper into DevOps tools and workflows.
@@ -116,9 +20,9 @@ A. Continuous Integration
 
 B. Continuous Deployment
 
-4. Deploy to server/s
-5. Monitor logs and metrics
-6. Alert product team
+1. Deploy to server/s
+2. Monitor logs and metrics
+3. Alert product team
 
 ### Automated Pull Requests
 
@@ -207,7 +111,7 @@ So now that we've done the building, testing and deployment, it would be great t
 
 #### Log Aggregation
 
-This is the act of collecting, tagging, and making searchable all logs emitted from the frontend, backend, and database so we can trace and take action when errors occur. A popular log aggregation stack used widely today is ELK (elasticsearch, logstash, and kibana), logstash collects all log messages and extracts meaningful metadata as tags, these tagged logs are stored in elasticsearch which is optimized for storing and searching text, that then in turn exposes all this data in kibana, a web front end for visualizing and exploring data.
+This is the act of collecting, tagging, and making searchable all logs emitted from the frontend, backend, and database so we can trace and take action when errors occur. A popular log aggregation stack used widely today is **ELK** (elasticsearch, logstash, and kibana), logstash collects all log messages and extracts meaningful metadata as tags, these tagged logs are stored in elasticsearch which is optimized for storing and searching text, that then in turn exposes all this data in kibana, a web front end for visualizing and exploring data.
 
 ### Microservices
 
@@ -338,11 +242,11 @@ What are the technical skills needed to enter a DevOps career?
     - Terraform
 - Testing & Building
   - Build Tools
-    - Gradle, Maven
+    - Gradle, Maven, Buildbot, Webpack
   - Artifact Repository Management
     - Docker Hub, AWS ECR, JFrog
   - CI/CD
-    - Jenkins, GitHub Actions
+    - Jenkins, GitHub Actions, Gulp
 - Observation
   - Monitoring
     - Fluent Bit, Prometheus, Nagios, ELK Stack
@@ -1186,18 +1090,6 @@ Main # <-- highest level directives (workers, pid file, logs)
     ├── Server
     └── Upstream
 ```
-
-## Logging and Metrics
-
-### Prometheus
-
-### Grafana
-
-### ELK Stack
-
-## Cypress
-
-## Nginx
 
 ## Terraform
 
