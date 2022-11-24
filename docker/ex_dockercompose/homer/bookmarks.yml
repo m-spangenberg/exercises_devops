@@ -1,0 +1,65 @@
+---
+services:
+  - name: "Remote"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Zoom"
+        logo: "assets/tools/sample.png"
+        subtitle: "Video Calls"
+        tag: "meetings"
+        url: "https://zoom.us/"
+        target: "_blank"
+      - name: "Teams"
+        logo: "assets/tools/sample.png"
+        subtitle: "Teamwork Tools"
+        tag: "meetings"
+        url: "https://teams.live.com/"
+        target: "_blank"
+      - name: "Notion"
+        logo: "assets/tools/sample.png"
+        subtitle: "Bookmark example"
+        tag: "app"
+        url: "https://www.notion.so/"
+        target: "_blank"
+      - name: "GitHub"
+        logo: "assets/tools/sample.png"
+        subtitle: "Bookmark example"
+        tag: "app"
+        url: "https://github.com/"
+        target: "_blank"
+      - name: "LinkedIn"
+        logo: "assets/tools/sample.png"
+        subtitle: "Bookmark example"
+        tag: "app"
+        url: "https://www.linkedin.com/"
+        target: "_blank"
+      - name: "Atlassian"
+        logo: "assets/tools/sample.png"
+        subtitle: "Bookmark example"
+        tag: "app"
+        url: "https://www.atlassian.com/"
+        target: "_blank"
+
+  - name: "Deployment"
+    icon: "fas fa-cloud"
+    items:
+
+  - name: "Databases"
+    icon: "fas fa-cloud"
+    items:
+
+  - name: "Frameworks"
+    icon: "fas fa-cloud"
+    items:
+
+  - name: "Development"
+    icon: "fas fa-cloud"
+    items:
+
+  - name: "Design"
+    icon: "fas fa-cloud"
+    items:
+
+  - name: "Knowledge"
+    icon: "fas fa-cloud"
+    items:

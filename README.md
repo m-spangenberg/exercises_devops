@@ -100,9 +100,9 @@ My personal notes for learning Development Operations from the perspective of so
 
 ## What is DevOps?
 
-There are two domains involved in creating applications. Development, where engineers write and test software to fulfil a specific business goal, and operations, where that software is deployed and maintained on various infrastructure. DevOps is combination of those philosophies, practices, and tools. It is the practice of building delivery pipelines for services and is focused on the continuous and automated delivery of services. 
+There are two domains involved in creating applications. Development, where engineers write and test software to fulfil a specific business goal, and operations, where that software is deployed and maintained on various infrastructure. DevOps is combination of those philosophies, practices, and tools. It is the practice of building delivery pipelines for services and is focused on the continuous and automated delivery of services.
 
-Put more plainly, DevOps is responsible for building, testing, and releasing code in an accountable way that allows parties to react more rapidly, ensures higher reliability, scales more easily and is more secure. It's important to realize that while it's a requirement to have a broad working understanding of the many systems needed to put a service into production, it is not the role of DevOps to completely take over the work of Sys Admins, Network Engineers, or Security Engineers. Those are professions in their own right and are highly specialized. 
+Put more plainly, DevOps is responsible for building, testing, and releasing code in an accountable way that allows parties to react more rapidly, ensures higher reliability, scales more easily and is more secure. It's important to realize that while it's a requirement to have a broad working understanding of the many systems needed to put a service into production, it is not the role of DevOps to completely take over the work of Sys Admins, Network Engineers, or Security Engineers. Those are professions in their own right and are highly specialized.
 
 The DevOps Cycle: Plan > Code > Build > Test > Release > Deploy > Operate > Monitor
 
@@ -114,7 +114,7 @@ A. Continuous Integration
 2. Package apps and build container images
 3. Push packages and images to artifact repositories
 
-B. Continuous Deployment 
+B. Continuous Deployment
 
 4. Deploy to server/s
 5. Monitor logs and metrics
@@ -126,10 +126,10 @@ During the development process, developers will propose code changes with versio
 
 ### Testing & Test Driven Development
 
-* Unit Tests - Individual components of a service
-* Integration Tests - A few components together
-* System Tests (end-to-end) - Does the entire system work together
-* Acceptance Tests - Are users accepting changes that were made to the service
+- Unit Tests - Individual components of a service
+- Integration Tests - A few components together
+- System Tests (end-to-end) - Does the entire system work together
+- Acceptance Tests - Are users accepting changes that were made to the service
 
 TDD in a nutshell
 
@@ -145,9 +145,9 @@ CI is the automated process of building and testing changes to a codebase each t
 
 With CC we measure how comprehensive our tests are on the code base. Simply put, it's the ratio of non-syntax lines of code tested in the project. The higher our code coverage, the more stable the final product will be and less bugs we'll have to squash. **Branch Coverage** measures groups of lines of code instead of individual lines of code. Code Coverage methodology is extremely helpful in the following scenarios:
 
-* Product has users that might leave the service if they experience bugs
-* Working with new team members with little experience (interns, contractors)
-* Have a large (50K+) code base with many testable components
+- Product has users that might leave the service if they experience bugs
+- Working with new team members with little experience (interns, contractors)
+- Have a large (50K+) code base with many testable components
 
 An easy mistake to make is to try to get 100% code coverage during early stages of development, before the product has even launched to users. By trying to hit total coverage so early, testing will end up being too rigid and will slow down developers. Another thing to consider is that over-committing to unit testing before a feature has been absorbed into the product means that the developer responsible for that feature, and its many tests, will now be less likely want to remove it because of sunk-cost fallacy.
 
@@ -196,14 +196,14 @@ Is used to perform tasks like automatically deploying builds with features to a 
 
 So now that we've done the building, testing and deployment, it would be great to have insight into the infrastructure and services so we can make changes internally in order to reduce waste and increase performance. Performance Management in DevOps falls in the following catagories:
 
-* Metrics
-  * being able to quantify factors that directly impact service delivery
-* Logging
-  * having an auditable history of transactions in order to debug processes
-* Monitoring
-  * turning metrics and logs into data that can be processed by automation
-* Alerting
-  * notifies concerned parties when certain monitored values meet a threshold
+- Metrics
+  - being able to quantify factors that directly impact service delivery
+- Logging
+  - having an auditable history of transactions in order to debug processes
+- Monitoring
+  - turning metrics and logs into data that can be processed by automation
+- Alerting
+  - notifies concerned parties when certain monitored values meet a threshold
 
 #### Log Aggregation
 
@@ -235,9 +235,9 @@ An ephemeral environment is a temporary deployment of a self-contained version o
 
 The downsides of ephemeral environments is dealing with databases and microservice communication and in early development it might be beneficial to have read-only access to a staging database or perhaps a fresh database that's set up specifically to be used in an ephemeral environment, this environment might have the following qualities.
 
-* Pre-populated Data with Personally-Identifiable Information (PII) scrubbed
-* Undoable - Easy to reset database to a known good state
-* Migrated - Same schema as production
+- Pre-populated Data with Personally-Identifiable Information (PII) scrubbed
+- Undoable - Easy to reset database to a known good state
+- Migrated - Same schema as production
 
 #### Lifecycle Management
 
@@ -292,10 +292,10 @@ While developing a product, it will become necessary to have staging environment
 
 Since automation is a major part of DevOps, we can be expected to write many scripts to help automate tasks. Ideally you must be comfortable with **Bash** or **Poweshell**, but what's even more beneficial is to have experience with more powerful languages like **Python** and **Go**, which will allow us to author more complex code for our automation purposes. An example of common automation tasks are:
 
-* Backups, Storage Manipulation
-* System Monitoring, Log Management
-* CRON Jobs
-* Network Management
+- Backups, Storage Manipulation
+- System Monitoring, Log Management
+- CRON Jobs
+- Network Management
 
 #### Configuration Management
 
@@ -309,60 +309,60 @@ Since automation is a major part of DevOps, we can be expected to write many scr
 
 What are the technical skills needed to enter a DevOps career?
 
-* Server Administration (On-Premise/Remote)
-  * Command Line Interface
-  * Package Management
-  * Users & Permissions
-  * File Systems
-  * Operating Systems
-  * Networking
-    * Firewalls
-    * Proxy Servers
-    * Load Balancers
-    * HTTP/HTTPS
-    * IP/DNS
-  * Virtualization
-  * SSH
-* Development
-  * Scripting & Programming
-    * Python, Java, Go, JS
-    * YAML, JSON
-  * Version Control
-    * Git
-* Infrastructure
-  * Containers & Container Orchestration
-    * Docker, Kubernetes
-  * Cloud Iaas
-    * AWS, AZURE, GCP
-  * Infrastructure Provisioning
-    * Terraform
-* Testing & Building
-  * Build Tools
-    * Gradle, Maven
-  * Artifact Repository Management
-    * Docker Hub, AWS ECR, JFrog
-  * CI/CD
-    * Jenkins, GitHub Actions
-* Observation
-  * Monitoring
-    * Fluent Bit, Prometheus, Nagios, ELK Stack
-* Automation
-  * Shell Scripting
-    * BASH, Powershell
-  * Configuration Management
-    * Ansible
+- Server Administration (On-Premise/Remote)
+  - Command Line Interface
+  - Package Management
+  - Users & Permissions
+  - File Systems
+  - Operating Systems
+  - Networking
+    - Firewalls
+    - Proxy Servers
+    - Load Balancers
+    - HTTP/HTTPS
+    - IP/DNS
+  - Virtualization
+  - SSH
+- Development
+  - Scripting & Programming
+    - Python, Java, Go, JS
+    - YAML, JSON
+  - Version Control
+    - Git
+- Infrastructure
+  - Containers & Container Orchestration
+    - Docker, Kubernetes
+  - Cloud Iaas
+    - AWS, AZURE, GCP
+  - Infrastructure Provisioning
+    - Terraform
+- Testing & Building
+  - Build Tools
+    - Gradle, Maven
+  - Artifact Repository Management
+    - Docker Hub, AWS ECR, JFrog
+  - CI/CD
+    - Jenkins, GitHub Actions
+- Observation
+  - Monitoring
+    - Fluent Bit, Prometheus, Nagios, ELK Stack
+- Automation
+  - Shell Scripting
+    - BASH, Powershell
+  - Configuration Management
+    - Ansible
 
 ## YAML
 
 YAML syntax is used by Docker, Kubernetes, Ansible, and many others. Like JSON and XML, it is a serialized language that uses a standardized format for exchanging information. Data structures in YAML are defined with line separation and indentation. YAML syntax can represent the following data structures:
 
-* key-value pairs
-* objects
-* lists
-* booleans
-* multi-line strings
-* environment variables
-* comments
+- key-value pairs
+- objects
+- lists
+- booleans
+- multi-line strings
+- environment variables
+- comments
 
 ```yml
 ---
@@ -398,9 +398,9 @@ Below are my notes on learning Docker and progressing towards Kubernetes.
 
 ### Concepts
 
-* containers
-* container images
-* repositories
+- containers
+- container images
+- repositories
 
 ### What is a Container?
 
@@ -426,38 +426,38 @@ Some simple commands to get started:
 
 Check out [Docker Run Reference](https://docs.docker.com/engine/reference/run/) and [Docker Command Line Reference](https://docs.docker.com/engine/reference/commandline/docker/) for more!
 
-* `sudo docker pull image:version`
-  *  download an image called image:tag, the tag portion of the name is the version
-* `sudo docker run --name container-id-123 -p 80:80 -m 512M -c 2 -d awesomeapp:latest`
-  * start a docker container from the latest image of 'awesomeapp' in a detached mode
-  * name the container containder-id, map the container port 80 to hosts port 80
-  * limit system resource usage to 512MB memory and 2 CPU cores
-* `sudo docker ps`
-  * lists the active containers
-* `sudo docker ps -a`
-  * list all containers
-* `sudo docker restart container-id-123`
-  * restart container-id-123
-* `sudo docker exec -it container-id-123 bash`
-  * 'enter' container-id-123 by opening the interactive terminal
-* `sudo docker logs container-id-123 -t 50 -n`
-  * display the last 50 logs with timestamps for container-id-123
-* `sudo docker update container-id-123 -m 256M --restart unless-stopped`
-  * update a container's memory quota and restart policy (not available on Windows)
-* `sudo docker stop container-id-123`
-  * stop container-id-123
-* `sudo docker rm container-id-123`
-  * remove container-id-123
-* `sudo docker rmi image:tag` | `sudo docker image rm image:tag`
-  * remove image
-* `sudo docker network prune`
-  * remove orphaned networks
-* `sudo docker volumes prune`
-  * remove orphaned storage volumes
-* `sudo docker stats` | `sudo docker container stats container-id-123`
-  * display statistics for running containers
-* `sudo docker top`
-  * display the running processes inside a container
+- `sudo docker pull image:version`
+  - download an image called image:tag, the tag portion of the name is the version
+- `sudo docker run --name container-id-123 -p 80:80 -m 512M -c 2 -d awesomeapp:latest`
+  - start a docker container from the latest image of 'awesomeapp' in a detached mode
+  - name the container containder-id, map the container port 80 to hosts port 80
+  - limit system resource usage to 512MB memory and 2 CPU cores
+- `sudo docker ps`
+  - lists the active containers
+- `sudo docker ps -a`
+  - list all containers
+- `sudo docker restart container-id-123`
+  - restart container-id-123
+- `sudo docker exec -it container-id-123 bash`
+  - 'enter' container-id-123 by opening the interactive terminal
+- `sudo docker logs container-id-123 -t 50 -n`
+  - display the last 50 logs with timestamps for container-id-123
+- `sudo docker update container-id-123 -m 256M --restart unless-stopped`
+  - update a container's memory quota and restart policy (not available on Windows)
+- `sudo docker stop container-id-123`
+  - stop container-id-123
+- `sudo docker rm container-id-123`
+  - remove container-id-123
+- `sudo docker rmi image:tag` | `sudo docker image rm image:tag`
+  - remove image
+- `sudo docker network prune`
+  - remove orphaned networks
+- `sudo docker volumes prune`
+  - remove orphaned storage volumes
+- `sudo docker stats` | `sudo docker container stats container-id-123`
+  - display statistics for running containers
+- `sudo docker top`
+  - display the running processes inside a container
 
 It's important to remember `docker run` instantiated a container from an image, `docker start` restarts a stopped container.
 
@@ -465,20 +465,20 @@ It's important to remember `docker run` instantiated a container from an image, 
 
 ### Best Practices
 
-* use official images
-* be specific with versioning
-* use the smallest image possible
-* optimize build steps to reuse cached layers
-* make good use of .dockerignore
-* use multi-stage builds to reduce attack surface
-* create a least privileged user
-  * often root by default but some images have generic users
-* always scan  your images for security vulnerabilities
-  * log into Docker Hub and use `sudo docker scan IMAGENAME`
+- use official images
+- be specific with versioning
+- use the smallest image possible
+- optimize build steps to reuse cached layers
+- make good use of .dockerignore
+- use multi-stage builds to reduce attack surface
+- create a least privileged user
+  - often root by default but some images have generic users
+- always scan  your images for security vulnerabilities
+  - log into Docker Hub and use `sudo docker scan IMAGENAME`
 
 #### User Management at Build Time
 
-```
+```docker
 # users and groups
 RUN groupadd -r bob && useradd -g bob bob
 
@@ -496,20 +496,20 @@ CMD node index.js
 
 #### Network Types
 
-* Host
-* Bridge
-* ...
+- Host
+- Bridge
+- ...
 
 Docker creates isolated networks on the host system, if two docker containers are deployed within the same network, they can communicate with each other without any special considerations. When containers
 
-* `sudo docker network create test-network`
-    * creates a new network called test-network
-* `sudo docker network ls`
-    * lists networks available to docker
+- `sudo docker network create test-network`
+  - creates a new network called test-network
+- `sudo docker network ls`
+  - lists networks available to docker
 
 ### Environment Variables
 
-### Docker Compose 
+### Docker Compose
 
 ### Dockerfile
 
@@ -523,69 +523,69 @@ Below are my notes on learning Kubernetes.
 
 [Kubernetes](https://kubernetes.io/docs/home/) is a container orchestration tool for managing distributed containerized workloads and services, essentially it allows us to perform [declarative configuration](https://blog.nelhage.com/post/declarative-configuration-management/) and automation of container deployment in a scalable, performant way that is easy to backup and restore. The three big ideas of Kubernetes is that it aims to offer high availability, scalability and disaster recovery.
 
-### Concepts
+### Kubernetes Concepts
 
-* Master and Worker Nodes
-  * Master Node runs Kubernetes processes to manage the cluster
-    * API Server - the entrypoint to the cluster for configuration from the UI, API and, CLI
-    * Configuration is done in YAML and JSON format
-    * Controller Manager - manages the state of the cluster, repairs, restarts
-    * Scheduler - assigns containers to pods based on container needs and resource availability
-    * etcd - key-value storage that tracks the state of all nodes and containers
-  * Each Worker Node contains a number of Pods, which in turn run a number of containers
-  * Virtual Network
-    * combines all nodes into one machine
-  * Kubelets responsible for running application processes on Worker Nodes
-* Pods are wrappers around container/s
-  * One Pod per application, possibly many containers per pod
-  * Pods are ephemeral so they can be recreated frequently
-  * Each Pod has its own IP address which is renewed when it is recreated
-* Service
-  * Sits in front of the Pod and is not tied to the Pod's life-cycle
-  * Has a permanent IP address per Pod, and acts as a load balancer
+- Master and Worker Nodes
+  - Master Node runs Kubernetes processes to manage the cluster
+    - API Server - the entrypoint to the cluster for configuration from the UI, API and, CLI
+    - Configuration is done in YAML and JSON format
+    - Controller Manager - manages the state of the cluster, repairs, restarts
+    - Scheduler - assigns containers to pods based on container needs and resource availability
+    - etcd - key-value storage that tracks the state of all nodes and containers
+  - Each Worker Node contains a number of Pods, which in turn run a number of containers
+  - Virtual Network
+    - combines all nodes into one machine
+  - Kubelets responsible for running application processes on Worker Nodes
+- Pods are wrappers around container/s
+  - One Pod per application, possibly many containers per pod
+  - Pods are ephemeral so they can be recreated frequently
+  - Each Pod has its own IP address which is renewed when it is recreated
+- Service
+  - Sits in front of the Pod and is not tied to the Pod's life-cycle
+  - Has a permanent IP address per Pod, and acts as a load balancer
 
 ### Components
 
 Some of the core components we'll encounter most often when working with Kubernetes.
 
-* Node <- individual worker in a cluster
-  * Ingres <- external service, load balances and redirects requests to Service
-    * Service <- internal service in front of Pod
-      * Pod <- wrapper (abstraction) around application containers
-        * Containers <- containers needed for application
-        * Data -> Volumes
-  * ConfigMap <- external configuration for Pod
-  * Secrets <- stores secret credentials for Pod
-  * Volumes <- persistent storage for the Pod
-  * Deployment <- blueprint (abstraction) for Pod (stateless) configuration
-  * StatefulSet <- needed to manage (stateful) apps like databases
+- Node <- individual worker in a cluster
+  - Ingres <- external service, load balances and redirects requests to Service
+    - Service <- internal service in front of Pod
+      - Pod <- wrapper (abstraction) around application containers
+        - Containers <- containers needed for application
+        - Data -> Volumes
+  - ConfigMap <- external configuration for Pod
+  - Secrets <- stores secret credentials for Pod
+  - Volumes <- persistent storage for the Pod
+  - Deployment <- blueprint (abstraction) for Pod (stateless) configuration
+  - StatefulSet <- needed to manage (stateful) apps like databases
 
 ### Architecture
 
 Let's take a look at the architecture behind Kubernetes, for this example let's imagine we have one Worker Node with 2 Application Pods running on it.
 
-* Node <- our clustered servers being controlled by the Master Node
-  * Multiple Pods <- collections of containers as individual apps
-  * Container Runtime <- Docker or similar container technology
-  * Kubelet <- Kubernetes process interfaces with container runtime and node machine to start pods
-  * Kube Proxy <- intelligently forwards requests from services to pods
+- Node <- our clustered servers being controlled by the Master Node
+  - Multiple Pods <- collections of containers as individual apps
+  - Container Runtime <- Docker or similar container technology
+  - Kubelet <- Kubernetes process interfaces with container runtime and node machine to start pods
+  - Kube Proxy <- intelligently forwards requests from services to pods
 
-* Master Node <- different processes than Worker Nodes
-  * Api Server <- gateway that validates requests and queries to the cluster
-  * Scheduler <- looks at requests, checks resource availability, and assigns pods to nodes
-    * The Pod then gets started by Kubelet
-  * Controller Manager <- Detects state changes, attempts recovery via Scheduler
-  * etcd <- Stores state of the cluster for the purposes of communication between processes
+- Master Node <- different processes than Worker Nodes
+  - Api Server <- gateway that validates requests and queries to the cluster
+  - Scheduler <- looks at requests, checks resource availability, and assigns pods to nodes
+    - The Pod then gets started by Kubelet
+  - Controller Manager <- Detects state changes, attempts recovery via Scheduler
+  - etcd <- Stores state of the cluster for the purposes of communication between processes
 
 Small Cluster Example:
 
 Provisioning masters and workers in Kubernetes to extend existing clusters is relatively easy and only requires that their respective processes be satisfied in order for new servers to be added to the cluster.
 
-* Master 1
-  * Node 1
-  * Node 2
-* Master 2
-  * Node 3
+- Master 1
+  - Node 1
+  - Node 2
+- Master 2
+  - Node 3
 
 ### Minikube & Kubectl
 
@@ -597,32 +597,32 @@ Minikube is a condensed Kubernetes cluster meant to run on a single machine for 
 
 ### Kubectl Commands
 
-* `kubectl get pod`
-  * list the status of all pods on the node
-* `kubectl get services`
-  * show services on node
-* `kubectl create deployment NAME --image=image [--dry-run] [options]`
-  * create a deployment configuration
-* `kubectl get deployment`
-  * shows deployments created on node
-* `kubectl edit deployment NAME`
-  * directly edit the pod's auto generated config file
-* `kubectl logs NAME`
-  * shows log output associated with the pod
-* `kubectl describe pod NAME`
-  * reports on state changes inside the pod
-* `kubectl exec -it NAME /bin/bash`
-  * 'enter' container NAME by opening the interactive terminal
-* `kubectl delete deployment NAME`
-  * delete the deployment configuration
-* `kubectl apply -f config-file.yaml`
-  * executes the configuration file
-* `kubectl delete -f config-file.yaml`
-  * delete pod using the configuration file
-* `kubectl get ns`
-  * show all namespaces associated with the cluster
-* `kubectl get all -n NAMESPACE`
-  * shows all components associated with a given namespace
+- `kubectl get pod`
+  - list the status of all pods on the node
+- `kubectl get services`
+  - show services on node
+- `kubectl create deployment NAME --image=image [--dry-run] [options]`
+  - create a deployment configuration
+- `kubectl get deployment`
+  - shows deployments created on node
+- `kubectl edit deployment NAME`
+  - directly edit the pod's auto generated config file
+- `kubectl logs NAME`
+  - shows log output associated with the pod
+- `kubectl describe pod NAME`
+  - reports on state changes inside the pod
+- `kubectl exec -it NAME /bin/bash`
+  - 'enter' container NAME by opening the interactive terminal
+- `kubectl delete deployment NAME`
+  - delete the deployment configuration
+- `kubectl apply -f config-file.yaml`
+  - executes the configuration file
+- `kubectl delete -f config-file.yaml`
+  - delete pod using the configuration file
+- `kubectl get ns`
+  - show all namespaces associated with the cluster
+- `kubectl get all -n NAMESPACE`
+  - shows all components associated with a given namespace
 
 ### Deployment Configuration
 
@@ -630,30 +630,30 @@ Configuration files have three parts, the metadata, the specification, and the s
 
 Templates have their own specification data and metadata which applies to a pod. This can be seen as the blueprint for the pod (images, ports, names). The chain of responsibility is as follows: Deployments manage Replica Sets which manage Pods which are an abstraction of containers.
 
-In the metadata we use labels and selectors, which are simply key-value pairs, to register pods with specific services. Ports are broken down into a service port and a pod port, or external and internal, with the internal container port being the targetPort and the external port being what is managed by Services, it's important to note that we don't pass ports to the outside, Ingest performs redirects to Services. See `[nginx-deployment.yml](kubernetes/conf_basic/nginx-deployment.yml)` and `[nginx-service.yml](kubernetes/conf_basic/nginx-service.yml)` for an example of a basic Kubernetes deployment with helpful comments describing the strucxture of both configuration files.
+In the metadata we use labels and selectors, which are simply key-value pairs, to register pods with specific services. Ports are broken down into a service port and a pod port, or external and internal, with the internal container port being the targetPort and the external port being what is managed by Services, it's important to note that we don't pass ports to the outside, Ingest performs redirects to Services. See [nginx-deployment.yml](kubernetes/conf_basic/nginx-deployment.yml) and [nginx-service.yml](kubernetes/conf_basic/nginx-service.yml) for an example of a basic Kubernetes deployment with helpful comments describing the strucxture of both configuration files.
 
 ### Namespaces
 
 In Kubernetes a namespace is a way to organize clusters into virtual sub-clusters, this is useful when different teams are sharing resources in a cluster and the teams need logical separation but still need to inter-communicate. It is also extremely useful in staging/deployment or blue/green deployment configurations because it allows us to assign and reuse resources with quotas. K8s gives us 4 namespaces by default.
 
-* kube-system
-  * system processes, not for user to deploy in
-* kube-public
-  * publicly accessible cluster info that doesn't need auth
-* kube-node-lease
-  * holds info about node heartbeats (availability)
-* default
-  * the namespace available to the user for deployment
+- kube-system
+  - system processes, not for user to deploy in
+- kube-public
+  - publicly accessible cluster info that doesn't need auth
+- kube-node-lease
+  - holds info about node heartbeats (availability)
+- default
+  - the namespace available to the user for deployment
   
 These defaults can be appended to with any number of user generated namespaces. Namespaces can be generated from the CLI with `kubectl create namespace NAME`, but it is considered good practice to declare namespaces via a configuration file so your deployment's history can be audited.
 
 Some limitations of namespaces are:
 
-* We can't access most resources from other namespaces (needs individual ConfigMap)
-* Secrets must be declared in each namespace
-* Sharable resources are services which need to be declared in ConfigMap as `service.namespace`
-* Some components are not isolatable in namespaces, for instance volumes because they live globally on the cluster
-* If you don't supply a namespace, components get created in the `default` namespace
+- We can't access most resources from other namespaces (needs individual ConfigMap)
+- Secrets must be declared in each namespace
+- Sharable resources are services which need to be declared in ConfigMap as `service.namespace`
+- Some components are not isolatable in namespaces, for instance volumes because they live globally on the cluster
+- If you don't supply a namespace, components get created in the `default` namespace
 
 ### Ingress & Ingress Controller
 
@@ -744,35 +744,35 @@ We can apply the configuration file with `kubectl apply -f namespace-ingress.yam
 
 Back to the grindstone! :)
 
-https://www.youtube.com/watch?v=T4Z7visMM4E
+<https://www.youtube.com/watch?v=T4Z7visMM4E>
 
 ### Helm
 
-https://www.youtube.com/watch?v=-ykwb1d0DXU
+<https://www.youtube.com/watch?v=-ykwb1d0DXU>
 
 ### App Deployment Demo
 
-https://www.youtube.com/watch?v=EQNO_kM96Mo
+<https://www.youtube.com/watch?v=EQNO_kM96Mo>
 
 ### Pods & Containers
 
-https://www.youtube.com/watch?v=5cNrTU6o3Fw
+<https://www.youtube.com/watch?v=5cNrTU6o3Fw>
 
 ### Volumes
 
-https://www.youtube.com/watch?v=0swOh5C3OVM
+<https://www.youtube.com/watch?v=0swOh5C3OVM>
 
 ### ConfigMap
 
-https://www.youtube.com/watch?v=FAnQTgr04mU
+<https://www.youtube.com/watch?v=FAnQTgr04mU>
 
 ### StatefulSet
 
-https://www.youtube.com/watch?v=pPQKAR1pA9U
+<https://www.youtube.com/watch?v=pPQKAR1pA9U>
 
 ### Private Docker Registry Pulls
 
-https://www.youtube.com/watch?v=asIS4KIs40M
+<https://www.youtube.com/watch?v=asIS4KIs40M>
 
 ## Ansible
 
@@ -780,62 +780,62 @@ Below are my study notes on Ansible, the basic principles of how it operates, it
 
 ### Use Cases
 
-* Application Deployment
-* Configuration Management
-* Orchestration
-* Security and Compliance
-* Provisioning
+- Application Deployment
+- Configuration Management
+- Orchestration
+- Security and Compliance
+- Provisioning
 
 When deciding to use **Terraform vs Ansible**, a few key points to consider are:
 
-* Terraform's strengths lay in infrastructure provisioning
-  * Declarative in nature
-  * Can't do bare-metal provisioning
-  * Orchestrating cloud services and cloud infrastructure: virtual machines, containers, storage and networking.
-* Ansible's strengths are in configuration management
-  * Procedural in nature
-  * Can do bare-metal provisioning
-  * Configuring servers: provisioning, config management, app deployment. Works on Windows, Unix, Linux.
+- Terraform's strengths lay in infrastructure provisioning
+  - Declarative in nature
+  - Can't do bare-metal provisioning
+  - Orchestrating cloud services and cloud infrastructure: virtual machines, containers, storage and networking.
+- Ansible's strengths are in configuration management
+  - Procedural in nature
+  - Can do bare-metal provisioning
+  - Configuring servers: provisioning, config management, app deployment. Works on Windows, Unix, Linux.
 
 ## Architecture Overview
 
-* **Control Node**
-    * Our master machine, from which all managed processes will be orchestrated.
+- **Control Node**
+  - Our master machine, from which all managed processes will be orchestrated.
 
-* **Configuration Management Database**
-  * Central Data Warehouse for Configuration and Data Assets
-  * Repository for all Configuration Management Data
+- **Configuration Management Database**
+  - Central Data Warehouse for Configuration and Data Assets
+  - Repository for all Configuration Management Data
 
-* [**Inventory**](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory)
-  * A list of all the IP addresses and hostnames of your managed/target machines, also called a 'hostfile'.
+- [**Inventory**](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory)
+  - A list of all the IP addresses and hostnames of your managed/target machines, also called a 'hostfile'.
 
-* [**Playbook**](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#about-playbooks)
-  * **Plays**
-    * A simple file written in YAML code that describes the workflows (plays) required to perform certain tasks on your inventory
-      * API's exists to support modules and are not for direct consumption (Python, Cloud Services, Etc.)
-      * Capable of synchronous and asynchronous execution
+- [**Playbook**](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#about-playbooks)
+  - **Plays**
+    - A simple file written in YAML code that describes the workflows (plays) required to perform certain tasks on your inventory
+      - API's exists to support modules and are not for direct consumption (Python, Cloud Services, Etc.)
+      - Capable of synchronous and asynchronous execution
 
-  * [**Modules**](https://docs.ansible.com/ansible/latest/collections/index.html#list-of-collections) exist within every playbook, and is composed of code executed on our target machines
+  - [**Modules**](https://docs.ansible.com/ansible/latest/collections/index.html#list-of-collections) exist within every playbook, and is composed of code executed on our target machines
 
-  * [**Plugins**](https://docs.ansible.com/ansible/latest/plugins/plugins.html#working-with-plugins) allow us to execute ansible tasks as a job build step and augment ansible's core functions
+  - [**Plugins**](https://docs.ansible.com/ansible/latest/plugins/plugins.html#working-with-plugins) allow us to execute ansible tasks as a job build step and augment ansible's core functions
 
-  * **Roles**
-    * Reusable tasks, handlers, variables, plugins, templates and files inside a Play
+  - **Roles**
+    - Reusable tasks, handlers, variables, plugins, templates and files inside a Play
 
-  * **Tasks**
-    * Actioned constrained to a Play that can be applied to a host
+  - **Tasks**
+    - Actioned constrained to a Play that can be applied to a host
 
-  * **Handlers**
-    * Special tasks that only execute when notified by a state change in a previous task
+  - **Handlers**
+    - Special tasks that only execute when notified by a state change in a previous task
 
-* **Managed Nodes**
-  * Targets or hosts to be managed by Ansible
+- **Managed Nodes**
+  - Targets or hosts to be managed by Ansible
 
-* [**Collections**](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html#collections)
-  * A format in which ansible content is distributed
+- [**Collections**](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html#collections)
+  - A format in which ansible content is distributed
 
-* Ansible Galaxy
-  * a free site for finding community made roles and collections, a collection being an automation package that includes multiple playbooks, roles, modules and plugins
+- Ansible Galaxy
+  - a free site for finding community made roles and collections, a collection being an automation package that includes multiple playbooks, roles, modules and plugins
 
 ## Installing Ansible (Fedora)
 
@@ -854,12 +854,12 @@ pipenv run ansible-playbook --inventory-file inventory.ini playbook.yml -u root 
 
 ## Playbook Structure
 
-* Playbooks are written in [YAML](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-syntax)
-* They contain lists, key-value pairs, and list of dictionaries
-* Start with three dashes and ends with three dots
-* Hosts are the group of target machines defined in our inventory/hostfile
-* Tasks are executed strictly in order, but can be asynchronous or synchronous across hosts
-* Handlers are executed as triggers to state changes in the list of tasks
+- Playbooks are written in [YAML](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-syntax)
+- They contain lists, key-value pairs, and list of dictionaries
+- Start with three dashes and ends with three dots
+- Hosts are the group of target machines defined in our inventory/hostfile
+- Tasks are executed strictly in order, but can be asynchronous or synchronous across hosts
+- Handlers are executed as triggers to state changes in the list of tasks
 
 ```yml
 ---
@@ -874,28 +874,29 @@ tasks: the actions that are going to be performed --> links internally to module
 
 For more in-depth content on the topics below, see: [Ansible User Guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
 
-* Escalate privileges and change users with `become`
-* Repeat tasks with `loops`
-* Execute tasks on different machines with `delegate`
-* Run tasks when certain conditons are met with `conditionals`
-* Evaluate conditions with `tests`
-* Group tasks together with `blocks`
-* React to changes with `handlers`
-* Set remote `environment values`
-* Create reusable `files` and `roles`
-* Use playbooks in other playbooks with `include` and `import`
-* Run only parts of a playbook with `tags`
-* Run a playbook against various systems with different requirements with `variables`
-* Retrieve information about inventory with `facts`
-* Store sensitive information with `vault`
-* Test run playbooks with `check mode` and `diff`
-* Verify playbooks before executing them with `ansible-lint`
+- Escalate privileges and change users with `become`
+- Repeat tasks with `loops`
+- Execute tasks on different machines with `delegate`
+- Run tasks when certain conditons are met with `conditionals`
+- Evaluate conditions with `tests`
+- Group tasks together with `blocks`
+- React to changes with `handlers`
+- Set remote `environment values`
+- Create reusable `files` and `roles`
+- Use playbooks in other playbooks with `include` and `import`
+- Run only parts of a playbook with `tags`
+- Run a playbook against various systems with different requirements with `variables`
+- Retrieve information about inventory with `facts`
+- Store sensitive information with `vault`
+- Test run playbooks with `check mode` and `diff`
+- Verify playbooks before executing them with `ansible-lint`
 
 ### Playbook Examples
 
 For more examples, see: [Ansible Examples](https://github.com/ansible/ansible-examples)
 
 playbook with two plays (tasks): update webservers and update databases
+
 ```yml
 ---
 - name: Update web servers
@@ -929,6 +930,7 @@ playbook with two plays (tasks): update webservers and update databases
 ```
 
 playbook with one play (task): provisioning an Amazon EC2 instance
+
 ```yml
 ---
 - name: Create an EC2 instance
@@ -966,6 +968,7 @@ The default path to the inventory is located at: `/etc/ansible/hosts`, but if yo
 ### Inventory Examples
 
 inventory file in .ini format
+
 ```ini
 [webservers]
 
@@ -1003,6 +1006,7 @@ inventory file in .ini format
 ```
 
 inventory file in .yml format
+
 ```yml
 all:
   hosts:
@@ -1096,6 +1100,7 @@ rolename      # The directory created for our role
 We can then create our `main.yml` file inside the role's tasks folder and make use of the role in a playbook, in this case `simpleroles.yml`.
 
 rolename/tasks/main.yml
+
 ```yml
 ---
 - name: Install GIT
@@ -1107,6 +1112,7 @@ rolename/tasks/main.yml
 ```
 
 /path/to/playbook/simpleroles.yml
+
 ```yml
 ---
 - hosts: all
@@ -1123,54 +1129,49 @@ rolename/tasks/main.yml
 
 ### Local Setup with Docker
 
-* `sudo docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts`
-  * deploy a jenkins docker container with a persistent volume and ports open on 8080 and 50000.
-* `sudo docker ps`
-  * get the newly created container id
-* `sudo docker logs CONTAINER ID`
-  * get the initial setup password from the container's logs
-* browser: `localhost:8080`
-  * unlock jenkins with the setup password
-  * perform initial setup and install plugins
-  * create admin user
+- `sudo docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts`
+  - deploy a jenkins docker container with a persistent volume and ports open on 8080 and 50000.
+- `sudo docker ps`
+  - get the newly created container id
+- `sudo docker logs CONTAINER ID`
+  - get the initial setup password from the container's logs
+- browser: `localhost:8080`
+  - unlock jenkins with the setup password
+  - perform initial setup and install plugins
+  - create admin user
 
-### Concepts
+### Jenkins Concepts
 
-* Items
-  * Freestyle Project - Single tasks like testing
-  * Pipeline - more complex delivery flows (test, build, package, deploy) single branch
-  * Multibranch Pipeline - applies to multiple branches
-* Credential Scopes
-  * System
-  * Global
+- Items
+  - Freestyle Project - Single tasks like testing
+  - Pipeline - more complex delivery flows (test, build, package, deploy) single branch
+  - Multibranch Pipeline - applies to multiple branches
+- Credential Scopes
+  - System
+  - Global
 
-https://www.youtube.com/watch?v=MY1w7sWW5ms
+<https://www.youtube.com/watch?v=MY1w7sWW5ms>
 
-## Cypress
-
-## Nginx
-
-### Use Cases
+### Jenkins Use Cases
 
 [NGINX](https://docs.nginx.com/) is widely deployed and used in [many different configurations](https://www.nginx.com/resources/glossary/glossary/) in industry. It is popular with high traffic sites and services because it is able to handle many thousands of concurrent connections. Some of its main use cases are for serving content, and managing how content reaches end-users. It can also be configured to act as a web app firewall, prevent internal DDOS, act as an API gateway, perform [ingress control for K8S](https://kubernetes.github.io/ingress-nginx/deploy/baremetal/), and act as a [sidecar proxy loader](https://www.nginx.com/resources/glossary/sidecar/). Because it has so many use cases, I'll focus on some of the most popular ones.
 
-* Web Server
-* Load Balancing
-* Caching
-* Reverse Proxy
+- Web Server
+- Load Balancing
+- Caching
+- Reverse Proxy
 
 ### Basic Commands
 
-* `nginx -t` -- validate configuration syntax before reloading
-* `nginx -T` -- show the current configuration in use
-* `nginx -s reload` -- pushes the configuration to the active instance
+- `nginx -t` -- validate configuration syntax before reloading
+- `nginx -T` -- show the current configuration in use
+- `nginx -s reload` -- pushes the configuration to the active instance
 
 ### Nginx Configuration
 
 By default, the location of the main configuration file is at `/etc/nginx/nginx.conf` and it includes all personalized files from the `/etc/nginx/conf.d/` directory. Configuration files in NGINX are structured as key value pairs that are either one-line directives or blocks of directives called contexts which are simply many one-line directives enclosed by braces. Each NGINX configuration has one Main context and one HTTP context. You can think of a directive as a statement that controls certain NGINX behavior. NGINX has a great [beginners guide](http://nginx.org/en/docs/beginners_guide.html) introducing these concepts.
 
 NGINX has many pre-made configurations and examples available as resources on their [wiki](https://www.nginx.com/resources/wiki/start/).
-
 
 Diagram of the some of the top-level contexts available in a "fully configured" .conf
 
@@ -1186,9 +1187,21 @@ Main # <-- highest level directives (workers, pid file, logs)
     └── Upstream
 ```
 
+## Logging and Metrics
+
+### Prometheus
+
+### Grafana
+
+### ELK Stack
+
+## Cypress
+
+## Nginx
+
 ## Terraform
 
-https://learn.hashicorp.com/tutorials/terraform/eks?in=terraform/kubernetes
+<https://learn.hashicorp.com/tutorials/terraform/eks?in=terraform/kubernetes>
 
 ## GitOps
 
@@ -1198,27 +1211,27 @@ Scenario: Our Development team has created a bespoke Hello World app and is read
 
 ### Overview
 
-* this repo contains all configuration needed to deploy our app to `AWS EKS`
-  * 2 branches, `main` and `develop`
-* develop
-  * `github actions` performs Continuous Integration every time a pull request is merged with `develop`
-* main
-  * `github actions` notifies `jenkins` to trigger a build and pushes changes to production
+- this repo contains all configuration needed to deploy our app to `AWS EKS`
+  - 2 branches, `main` and `develop`
+- develop
+  - `github actions` performs Continuous Integration every time a pull request is merged with `develop`
+- main
+  - `github actions` notifies `jenkins` to trigger a build and pushes changes to production
 
 ### Why GitOps?
 
 With GitOps the overarching goal is to approach DevOps with the same processes used in Software Development in order to produce high quality, automated, and tested Infrastructure as Code.
 
-* Repo
-  * We create a repository for our IaC configuration code which is our single source of truth
-    * Terraform, Kubernetes, Fluent Bit configuration files
-* Commit
-  * Team members propose changes by generating pull requests on the development branch
-    * CI pipeline tests commits before they get manually approved for merger to development branch
-* Merge
-  * Team Leads approves commits and merges changes to main branch
-* Deploy
-  * CD pipeline deploys changes to production
-    * Push Deployments from the repo to the environment with a build application (Jenkins, GitLab) outside the environment
-    * or Pull Deployments from the repo to the environment with an agent (Flux, Argo) that sits inside the environment
-    * 
+- Repo
+  - We create a repository for our IaC configuration code which is our single source of truth
+    - Terraform, Kubernetes, Fluent Bit configuration files
+- Commit
+  - Team members propose changes by generating pull requests on the development branch
+    - CI pipeline tests commits before they get manually approved for merger to development branch
+- Merge
+  - Team Leads approves commits and merges changes to main branch
+- Deploy
+  - CD pipeline deploys changes to production
+    - Push Deployments from the repo to the environment with a build application (Jenkins, GitLab) outside the environment
+    - or Pull Deployments from the repo to the environment with an agent (Flux, Argo) that sits inside the environment
+    -
